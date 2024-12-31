@@ -19,6 +19,8 @@ class WorkshopInstructorResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
 
+    protected static ?string $navigationGroup = 'Workshop User Management';
+
     public static function form(Form $form): Form
     {
         return $form
