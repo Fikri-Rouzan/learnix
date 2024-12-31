@@ -22,7 +22,7 @@ class WorkshopParticipant extends Model
         'booking_transaction_id',
     ];
 
-    public function workshops(): BelongsTo
+    public function workshop(): BelongsTo
     {
         return $this->belongsTo(Workshop::class, 'workshop_id');
     }
