@@ -21,6 +21,8 @@ class WorkshopResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-calendar';
 
+    protected static ?string $navigationGroup = 'Workshop Management';
+
     public static function form(Form $form): Form
     {
         return $form
