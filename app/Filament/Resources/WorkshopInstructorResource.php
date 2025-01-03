@@ -33,6 +33,7 @@ class WorkshopInstructorResource extends Resource
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('avatar')
                     ->image()
+                    ->directory('instructors')
                     ->columnSpan(2)
                     ->required(),
             ]);

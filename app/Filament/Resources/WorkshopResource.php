@@ -40,13 +40,18 @@ class WorkshopResource extends Resource
                             ->maxLength(255),
                         Forms\Components\FileUpload::make('thumbnail')
                             ->image()
+                            ->directory('workshop_thumbnails')
                             ->columnSpan(2)
                             ->required(),
                         Forms\Components\FileUpload::make('venue_thumbnail')
                             ->image()
+                            ->directory('venue_thumbnails')
+                            ->columnSpan(2)
                             ->required(),
                         Forms\Components\FileUpload::make('bg_map')
                             ->image()
+                            ->directory('maps')
+                            ->columnSpan(2)
                             ->required(),
                         Forms\Components\Repeater::make('benefits')
                             ->relationship('benefits')

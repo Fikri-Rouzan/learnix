@@ -143,6 +143,7 @@ class BookingTransactionResource extends Resource
                                 ->required(),
                             Forms\Components\FileUpload::make('proof')
                                 ->image()
+                                ->directory('proofs')
                                 ->required(),
                         ]),
                 ])
