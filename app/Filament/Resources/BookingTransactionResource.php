@@ -11,6 +11,7 @@ use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Filters\SelectFilter;
@@ -128,6 +129,7 @@ class BookingTransactionResource extends Resource
                                 ->maxLength(255),
                             Forms\Components\TextInput::make('booking_trx_id')
                                 ->required()
+                                ->readOnly()
                                 ->maxLength(255),
                         ]),
                     Forms\Components\Wizard\Step::make('Payment Information')
@@ -176,6 +178,21 @@ class BookingTransactionResource extends Resource
                     ->relationship('workshop', 'name'),
             ])
             ->actions([
+                Tables\Actions\Action::make('approve')
+                    ->label('Approve')
+                    ->action(function (BookingTransaction $record) {
+                        $record->is_paid = true;
+                        $record->save();
+
+                        Notification::make()
+                            ->title('Order Approved')
+                            ->success()
+                            ->body('The order has been successfully approve')
+                            ->send();
+                    })
+                    ->color('success')
+                    ->requiresConfirmation()
+                    ->visible(fn(BookingTransaction $record) => !$record->is_paid),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\DeleteAction::make(),

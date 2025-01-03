@@ -86,7 +86,12 @@ class BookingController extends Controller
         $myBookingDetails = $this->bookingService->getMyBookingDetails($validated);
 
         if ($myBookingDetails) {
-            return view('booking.my_booking_details', compact('myBookingDetails'));
+            $subTotalAmount = $myBookingDetails->workshop->price * $myBookingDetails->quantity;
+            $taxRate = 0.11;
+            $totalTax = $subTotalAmount * $taxRate;
+            $totalAmount = $subTotalAmount + $totalTax;
+
+            return view('booking.my_booking_details', compact('myBookingDetails', 'totalTax', 'subTotalAmount'));
         }
 
         return redirect()->route('front.check_booking')->withErrors(['error' => 'Transaction not found']);

@@ -48,11 +48,10 @@ class BookingService
         $workshop = $this->workshopRepository->find($orderData['workshop_id']);
 
         $quantity = isset($orderData['quantity']) ? $orderData['quantity'] : 1;
-        $subTotalAmount = $workshop->price * $quantity;
 
+        $subTotalAmount = $workshop->price * $quantity;
         $taxRate = 0.11;
         $totalTax = $subTotalAmount * $taxRate;
-
         $totalAmount = $subTotalAmount + $totalTax;
 
         $orderData['sub_total_amount'] = $subTotalAmount;

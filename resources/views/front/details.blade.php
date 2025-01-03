@@ -181,7 +181,7 @@
                             </div>
                         </div>
                         <div class="flex flex-col">
-                            <a href="booking.html"
+                            <a href="{{ route('front.booking', $workshop->slug) }}"
                                 class="flex items-center justify-center mx-8 h-16 rounded-xl px-6 gap-[10px] bg-aktiv-orange font-semibold text-lg leading-[27px] text-white mb-8">Join
                                 Workshop</a>
                         </div>
