@@ -31,6 +31,7 @@ class CategoryResource extends Resource
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('icon')
                     ->image()
+                    ->directory('categories')
                     ->columnSpan(2)
                     ->required(),
             ]);
