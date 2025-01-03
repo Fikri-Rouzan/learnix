@@ -43,11 +43,21 @@
                                 </div>
                             @endif
                         @else
-                            <div
-                                class="absolute top-3 left-3 flex items-center rounded-full py-3 px-5 gap-1 bg-aktiv-red text-white z-10">
-                                <img src="{{ asset('assets/images/icons/sand-timer.svg') }}" class="w-6 h-6" alt="icon">
-                                <span class="font-semibold">CLOSED</span>
-                            </div>
+                            @if ($workshop->has_started)
+                                <div
+                                    class="absolute top-3 left-3 flex items-center rounded-full py-3 px-5 gap-1 bg-aktiv-orange text-white z-10">
+                                    <img src="{{ asset('assets/images/icons/timer-start.svg') }}" class="w-6 h-6"
+                                        alt="icon">
+                                    <span class="font-semibold">STARTED</span>
+                                </div>
+                            @else
+                                <div
+                                    class="absolute top-3 left-3 flex items-center rounded-full py-3 px-5 gap-1 bg-aktiv-red text-white z-10">
+                                    <img src="{{ asset('assets/images/icons/sand-timer.svg') }}" class="w-6 h-6"
+                                        alt="icon">
+                                    <span class="font-semibold">CLOSED</span>
+                                </div>
+                            @endif
                         @endif
                     </div>
                     <section id="Header" class="flex flex-col gap-6">
@@ -181,9 +191,19 @@
                             </div>
                         </div>
                         <div class="flex flex-col">
-                            <a href="{{ route('front.booking', $workshop->slug) }}"
-                                class="flex items-center justify-center mx-8 h-16 rounded-xl px-6 gap-[10px] bg-aktiv-orange font-semibold text-lg leading-[27px] text-white mb-8">Join
-                                Workshop</a>
+                            @if ($workshop->is_open)
+                                <a href="{{ route('front.booking', $workshop->slug) }}"
+                                    class="flex items-center justify-center mx-8 h-16 rounded-xl px-6 gap-[10px] bg-aktiv-orange font-semibold text-lg leading-[27px] text-white mb-8">Join
+                                    Workshop</a>
+                            @else
+                                <a
+                                    class="flex items-center justify-center mx-8 h-16 rounded-xl px-6 gap-[10px] bg-[#E6E7EB] font-semibold text-lg leading-[27px] text-white mb-8">Join
+                                    Workshop</a>
+                                <div class="p-4 bg-aktiv-red">
+                                    <p class="font-semibold text-lg leading-[27px] text-center text-white">Oops! Sorry, it
+                                        seems that registration for this workshop is now closed 🙌🏻</p>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </section>

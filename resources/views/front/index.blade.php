@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Home')
+@section('title')
+    Homepage
+@endsection
 
 @section('content')
     <div class="h-[112px]">
@@ -30,26 +32,7 @@
     <section id="Goals" class="w-full max-w-[1280px] mx-auto px-[52px] z-10">
         <div class="bg-[linear-gradient(0deg,rgba(230,231,235,0)_0%,#E6E7EB_100%)] rounded-3xl p-[1px]">
             <div class="grid grid-cols-4 items-center gap-6 rounded-3xl p-[32px_52px] bg-white">
-                <div class="flex flex-col gap-3">
-                    <h2 class="font-['Neue_Plak_bold'] text-[32px] leading-[41.6px]">What awaits you <br>after you join 🧐
-                    </h2>
-                    <p class="font-medium text-aktiv-grey">Our programs are designed to <br> develop any ages 😉 </p>
-                </div>
-                <div class="flex flex-col items-center rounded-2xl border border-[#E6E7EB] p-[18px] gap-3 text-center">
-                    <img src="{{ asset('assets/images/icons/More Creativity.svg') }}" class="w-[64px]" alt="icon">
-                    <h3 class="font-semibold text-lg leading-[27px]">More Creativity</h3>
-                    <p class="font-medium text-aktiv-grey">Lorem Ipsum itu adalah sebusah text contoh</p>
-                </div>
-                <div class="flex flex-col items-center rounded-2xl border border-[#E6E7EB] p-[18px] gap-3 text-center">
-                    <img src="{{ asset('assets/images/icons/Career Planning.svg') }}" class="w-[64px]" alt="icon">
-                    <h3 class="font-semibold text-lg leading-[27px]">Career Planning</h3>
-                    <p class="font-medium text-aktiv-grey">Lorem Ipsum itu adalah sebusah text contoh</p>
-                </div>
-                <div class="flex flex-col items-center rounded-2xl border border-[#E6E7EB] p-[18px] gap-3 text-center">
-                    <img src="{{ asset('assets/images/icons/Good Communication.svg') }}" class="w-[64px]" alt="icon">
-                    <h3 class="font-semibold text-lg leading-[27px]">Good Communication</h3>
-                    <p class="font-medium text-aktiv-grey">Lorem Ipsum itu adalah sebusah text contoh</p>
-                </div>
+                <x-goal />
             </div>
         </div>
     </section>
@@ -151,8 +134,7 @@
                                                 class="font-medium text-aktiv-grey">{{ $itemNewWorkshop->time_at->format('h:i A') }}</span>
                                         </div>
                                     </div>
-                                    <h3
-                                        class="title min-h-[56px] font-semibold text-xl line-clamp-2 hover:line-clamp-none">
+                                    <h3 class="title min-h-[56px] font-semibold text-xl line-clamp-2 hover:line-clamp-none">
                                         {{ $itemNewWorkshop->name }}</h3>
                                     <p class="font-medium text-aktiv-grey">{{ $itemNewWorkshop->category->name }}</p>
                                 </div>
@@ -187,74 +169,7 @@
                 </div>
                 <div class="swiper w-full">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div
-                                class="testimony-card w-full max-w-[1176px] h-[413px] mx-auto flex items-center rounded-2xl overflow-hidden">
-                                <div class="flex h-full w-[436px] shrink-0 bg-aktiv-orange overflow-hidden">
-                                    <img src="{{ asset('assets/images/photos/testimony1.png') }}"
-                                        class="w-full h-full object-cover" alt="photo">
-                                </div>
-                                <div
-                                    class="h-full w-full flex flex-col justify-between p-[42px] bg-[linear-gradient(280.42deg,#5B8CE9_-42.59%,#4EB6F5_50.66%,#5B8CE9_143.91%)]">
-                                    <p class="font-['Times_New_Roman'] font-bold text-[38px] leading-[60.8px] text-white">
-                                        "The support from the behind-the-scenes team is noteworthy. They are responsive,
-                                        helpful, and genuinely invested in their members ❤️ ."
-                                    </p>
-                                    <div class="flex justify-between items-center">
-                                        <div class="flex flex-col gap-1">
-                                            <p class="font-semibold text-lg leading-[27px] text-white">Otter</p>
-                                            <p class="font-medium text-white">Mother of Tenz</p>
-                                        </div>
-                                        <div class="flex items-center">
-                                            <img src="{{ asset('assets/images/icons/Star 1.svg') }}"
-                                                class="p-[5px] w-8 h-8" alt="star">
-                                            <img src="{{ asset('assets/images/icons/Star 1.svg') }}"
-                                                class="p-[5px] w-8 h-8" alt="star">
-                                            <img src="{{ asset('assets/images/icons/Star 1.svg') }}"
-                                                class="p-[5px] w-8 h-8" alt="star">
-                                            <img src="{{ asset('assets/images/icons/Star 1.svg') }}"
-                                                class="p-[5px] w-8 h-8" alt="star">
-                                            <img src="{{ asset('assets/images/icons/Star 1.svg') }}"
-                                                class="p-[5px] w-8 h-8" alt="star">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div
-                                class="testimony-card w-full max-w-[1176px] h-[413px] mx-auto flex items-center rounded-2xl overflow-hidden">
-                                <div class="flex h-full w-[436px] shrink-0 bg-aktiv-orange overflow-hidden">
-                                    <img src="{{ asset('assets/images/photos/testimony1.png') }}"
-                                        class="w-full h-full object-cover" alt="photo">
-                                </div>
-                                <div
-                                    class="h-full w-full flex flex-col justify-between p-[42px] bg-[linear-gradient(280.42deg,#5B8CE9_-42.59%,#4EB6F5_50.66%,#5B8CE9_143.91%)]">
-                                    <p class="font-['Times_New_Roman'] font-bold text-[38px] leading-[60.8px] text-white">
-                                        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit sint sunt
-                                        incidunt obcaecati assumenda error ❤️ ."
-                                    </p>
-                                    <div class="flex justify-between items-center">
-                                        <div class="flex flex-col gap-1">
-                                            <p class="font-semibold text-lg leading-[27px] text-white">Otter</p>
-                                            <p class="font-medium text-white">Mother of Tenz</p>
-                                        </div>
-                                        <div class="flex items-center">
-                                            <img src="{{ asset('assets/images/icons/Star 1.svg') }}"
-                                                class="p-[5px] w-8 h-8" alt="star">
-                                            <img src="{{ asset('assets/images/icons/Star 1.svg') }}"
-                                                class="p-[5px] w-8 h-8" alt="star">
-                                            <img src="{{ asset('assets/images/icons/Star 1.svg') }}"
-                                                class="p-[5px] w-8 h-8" alt="star">
-                                            <img src="{{ asset('assets/images/icons/Star 1.svg') }}"
-                                                class="p-[5px] w-8 h-8" alt="star">
-                                            <img src="{{ asset('assets/images/icons/Star 1.svg') }}"
-                                                class="p-[5px] w-8 h-8" alt="star">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <x-testimonial />
                     </div>
                     <div class="absolute w-full max-w-[1244px] mx-auto left-1/2 top-1/2 transform -translate-x-1/2 z-10">
                         <div class="swiper-button-prev !w-12 !h-12 rounded-full after:hidden">
@@ -271,77 +186,7 @@
         </section>
         <section id="Benefits" class="w-full max-w-[1280px] mx-auto px-[52px] mt-[100px]">
             <div class="flex flex-col gap-8">
-                <div class="flex items-center justify-center">
-                    <h2 class="font-Neue-Plak-bold text-[32px] leading-[44.54px] capitalize text-center">Get acquainted
-                        with us! 🙌🏻</h2>
-                </div>
-                <div class="grid grid-cols-3 gap-6">
-                    <div
-                        class="flex flex-col h-full justify-between rounded-3xl border border-[#E6E7EB] p-6 gap-3 bg-white">
-                        <div class="flex items-center gap-3">
-                            <img src="{{ asset('assets/images/icons/In-Depth Learning from Experts Instructor.png') }}"
-                                class="flex w-[56px] h-[56px] shrink-0" alt="icon">
-                            <h3 class="font-semibold text-lg leading-[27px]">In-Depth Learning from Experts Instructor</h3>
-                        </div>
-                        <p class="font-medium leading-[25.6px] text-aktiv-grey">We feature instructors with strong
-                            field-specific expertise.</p>
-                    </div>
-                    <div
-                        class="flex flex-col h-full justify-between rounded-3xl border border-[#E6E7EB] p-6 gap-3 bg-white">
-                        <div class="flex items-center gap-3">
-                            <img src="{{ asset('assets/images/icons/Tangible Results.png') }}"
-                                class="flex w-[56px] h-[56px] shrink-0" alt="icon">
-                            <h3 class="font-semibold text-lg leading-[27px]">Tangible Results</h3>
-                        </div>
-                        <p class="font-medium leading-[25.6px] text-aktiv-grey">Our students are highly engaged and
-                            supportive of our community.</p>
-                    </div>
-                    <div
-                        class="flex flex-col h-full justify-between rounded-3xl border border-[#E6E7EB] p-6 gap-3 bg-white">
-                        <div class="flex items-center gap-3">
-                            <img src="{{ asset('assets/images/icons/Supportive Learning Environment.png') }}"
-                                class="flex w-[56px] h-[56px] shrink-0" alt="icon">
-                            <h3 class="font-semibold text-lg leading-[27px]">Supportive Learning Environment</h3>
-                        </div>
-                        <p class="font-medium leading-[25.6px] text-aktiv-grey">We feature instructors with strong
-                            field-specific expertise.</p>
-                    </div>
-                    <div
-                        class="flex flex-col h-full justify-between rounded-3xl border border-[#E6E7EB] p-6 gap-3 bg-white">
-                        <div class="flex items-center gap-3">
-                            <img src="{{ asset('assets/images/icons/community support.png') }}"
-                                class="flex w-[56px] h-[56px] shrink-0" alt="icon">
-                            <h3 class="font-semibold text-lg leading-[27px]">Community Support</h3>
-                        </div>
-                        <p class="font-medium leading-[25.6px] text-aktiv-grey">We feature instructors with strong
-                            field-specific expertise.</p>
-                    </div>
-                    <div
-                        class="flex flex-col h-full justify-between rounded-3xl border border-[#E6E7EB] p-6 gap-3 bg-white">
-                        <div class="flex items-center gap-3">
-                            <img src="{{ asset('assets/images/icons/Networking Opportunities With Other.png') }}"
-                                class="flex w-[56px] h-[56px] shrink-0" alt="icon">
-                            <h3 class="font-semibold text-lg leading-[27px]">Networking Opportunities With Other</h3>
-                        </div>
-                        <p class="font-medium leading-[25.6px] text-aktiv-grey">We feature instructors with strong
-                            field-specific expertise.</p>
-                    </div>
-                    <div
-                        class="flex flex-col h-full justify-between rounded-3xl border border-[#E6E7EB] p-6 gap-3 bg-white">
-                        <div class="flex items-center gap-3">
-                            <img src="{{ asset('assets/images/icons/Learning Flexibility.png') }}"
-                                class="flex w-[56px] h-[56px] shrink-0" alt="icon">
-                            <h3 class="font-semibold text-lg leading-[27px]">Learning Flexibility</h3>
-                        </div>
-                        <p class="font-medium leading-[25.6px] text-aktiv-grey">We offer a variety of workshops that you
-                            can learn from every day.</p>
-                    </div>
-                </div>
-                <a href="#" class="flex items-center rounded-full py-4 px-6 h-[56px] gap-3 bg-aktiv-orange mx-auto">
-                    <span class="font-semibold text-white">Learn More</span>
-                    <span
-                        class="w-6 h-6 rounded-full bg-white text-center align-middle text-aktiv-orange font-bold">></span>
-                </a>
+                <x-benefit />
             </div>
         </section>
     </div>
@@ -365,46 +210,7 @@
             </div>
         </div>
     </div>
-    <footer class="w-full p-[52px] bg-white">
-        <div class="flex flex-col w-full max-w-[1176px] mx-auto gap-8">
-            <div class="flex flex-col items-center gap-4">
-                <img src="{{ asset('assets/images/logos/Logo.png') }}" class="h-10" alt="logo">
-                <p class="font-medium text-aktiv-grey">Ipsum is a company engaged in offline education.</p>
-            </div>
-            <hr class="border-[#E6E7EB]">
-            <div class="grid grid-cols-3 items-center">
-                <p class="flex font-medium text-aktiv-grey">© 2024 Workflow Copyright</p>
-                <ul class="flex items-center justify-center gap-6">
-                    <li
-                        class="font-medium text-aktiv-grey text-nowrap hover:font-semibold hover:text-aktiv-orange transition-all duration-300">
-                        <a href="#">Workshop</a>
-                    </li>
-                    <li
-                        class="font-medium text-aktiv-grey text-nowrap hover:font-semibold hover:text-aktiv-orange transition-all duration-300">
-                        <a href="#">Community</a>
-                    </li>
-                    <li
-                        class="font-medium text-aktiv-grey text-nowrap hover:font-semibold hover:text-aktiv-orange transition-all duration-300">
-                        <a href="#">Testimony</a>
-                    </li>
-                    <li
-                        class="font-medium text-aktiv-grey text-nowrap hover:font-semibold hover:text-aktiv-orange transition-all duration-300">
-                        <a href="#">About Us</a>
-                    </li>
-                </ul>
-                <ul class="flex items-center justify-end gap-6">
-                    <li
-                        class="font-medium text-aktiv-grey text-nowrap hover:font-semibold hover:text-aktiv-orange transition-all duration-300">
-                        <a href="#">Instagram</a>
-                    </li>
-                    <li
-                        class="font-medium text-aktiv-grey text-nowrap hover:font-semibold hover:text-aktiv-orange transition-all duration-300">
-                        <a href="#">Twitter</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </footer>
+    <x-footer />
 @endsection
 
 @section('after-scripts')
