@@ -1,6 +1,6 @@
 # Learnix
 
-## About
+## About Learnix
 
 Learnix is a website where users can book offline workshops. The main purpose of this website is to make it easier for users to choose offline workshops they want to attend, with the expectation that participating in these workshops will provide users with new experiences and knowledge.
 
