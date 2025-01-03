@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ $workshop->name }} Payment
+    Confirmation Payment
 @endsection
 
 @section('content')
@@ -14,7 +14,7 @@
     <section id="Content" class="w-full max-w-[1280px] mx-auto px-[52px] mt-16 mb-[100px]">
         <div class="flex flex-col gap-16">
             <div class="flex flex-col items-center gap-1">
-                <p class="font-bold text-[32px] leading-[48px] capitalize text-white">Booking {{ $workshop->name }}</p>
+                <p class="font-bold text-[32px] leading-[48px] capitalize text-white">Confirmation Payment</p>
                 <div class="flex items-center gap-2 text-white">
                     <a class="last:font-semibold">Homepage</a>
                     <span>></span>

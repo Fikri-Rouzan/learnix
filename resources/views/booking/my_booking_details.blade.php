@@ -167,7 +167,8 @@
                                     class="input-wrapper flex items-center rounded-xl p-4 gap-2 bg-[#FBFBFB] overflow-hidden">
                                     <img src="{{ asset('assets/images/icons/bank-black.svg') }}"
                                         class="w-6 h-6 flex shrink-0" alt="icon">
-                                    <p class="font-semibold text-lg leading-[27px]">Bank Central Asia</p>
+                                    <p class="font-semibold text-lg leading-[27px]">
+                                        {{ $myBookingDetails->customer_bank_name }}</p>
                                 </div>
                             </div>
                             <div class="flex flex-col gap-4">
@@ -176,7 +177,8 @@
                                     class="input-wrapper flex items-center rounded-xl p-4 gap-2 bg-[#FBFBFB] overflow-hidden">
                                     <img src="{{ asset('assets/images/icons/profile-circle-black.svg') }}"
                                         class="w-6 h-6 flex shrink-0" alt="icon">
-                                    <p class="font-semibold text-lg leading-[27px]">Bimore Universe</p>
+                                    <p class="font-semibold text-lg leading-[27px]">
+                                        {{ $myBookingDetails->customer_bank_account }}</p>
                                 </div>
                             </div>
                             <div class="flex flex-col gap-4">
@@ -185,7 +187,8 @@
                                     class="input-wrapper flex items-center rounded-xl p-4 gap-2 bg-[#FBFBFB] overflow-hidden">
                                     <img src="{{ asset('assets/images/icons/card-edit-black.svg') }}"
                                         class="w-6 h-6 flex shrink-0" alt="icon">
-                                    <p class="font-semibold text-lg leading-[27px]">0200 2910 4260</p>
+                                    <p class="font-semibold text-lg leading-[27px]">
+                                        {{ $myBookingDetails->customer_bank_number }}</p>
                                 </div>
                             </div>
                         </div>
@@ -194,49 +197,55 @@
                         <div class="flex flex-col gap-4">
                             <h2 class="font-Neue-Plak-bold text-xl leading-[27.5px]">Attendants Details</h2>
                             <div class="flex flex-col gap-6">
-                                <div class="attendant-wrapper flex flex-col gap-[10px]">
-                                    <div id="Attendant-1"
-                                        class="group/accordion peer flex flex-col rounded-2xl border border-[#E6E7EB] p-6">
-                                        <label class="flex items-center justify-between">
-                                            <p class="font-semibold text-lg leading-[27px]">Attendants 1</p>
-                                            <input type="checkbox" name="accodion" class="hidden">
-                                            <img src="{{ asset('assets/images/icons/arrow-square-up.svg') }}"
-                                                class="w-6 h-6 transition-all duration-300 group-has-[:checked]/accordion:rotate-180"
-                                                alt="icon">
-                                        </label>
-                                        <div
-                                            class="accordion flex flex-col gap-6 mt-6 transition-all duration-300 group-has-[:checked]/accordion:!h-0 group-has-[:checked]/accordion:mt-0 overflow-y-hidden">
-                                            <hr class="border-[#E6E7EB]">
-                                            <div class="flex flex-col gap-4">
-                                                <p class="font-medium text-aktiv-grey">Full Name</p>
-                                                <div
-                                                    class="input-wrapper flex items-center rounded-xl p-4 gap-2 bg-[#FBFBFB] overflow-hidden">
-                                                    <img src="{{ asset('assets/images/icons/profile-circle-black.svg') }}"
-                                                        class="w-6 h-6 flex shrink-0" alt="icon">
-                                                    <p class="font-medium text-lg leading-[27px]">Probably Nabila</p>
+                                @foreach ($myBookingDetails->participants as $itemParticipant)
+                                    <div class="attendant-wrapper flex flex-col gap-[10px]">
+                                        <div id="Attendant-1"
+                                            class="group/accordion peer flex flex-col rounded-2xl border border-[#E6E7EB] p-6">
+                                            <label class="flex items-center justify-between">
+                                                <p class="font-semibold text-lg leading-[27px]">Attendants
+                                                    {{ $loop->iteration }}</p>
+                                                <input type="checkbox" name="accodion" class="hidden">
+                                                <img src="{{ asset('assets/images/icons/arrow-square-up.svg') }}"
+                                                    class="w-6 h-6 transition-all duration-300 group-has-[:checked]/accordion:rotate-180"
+                                                    alt="icon">
+                                            </label>
+                                            <div
+                                                class="accordion flex flex-col gap-6 mt-6 transition-all duration-300 group-has-[:checked]/accordion:!h-0 group-has-[:checked]/accordion:mt-0 overflow-y-hidden">
+                                                <hr class="border-[#E6E7EB]">
+                                                <div class="flex flex-col gap-4">
+                                                    <p class="font-medium text-aktiv-grey">Full Name</p>
+                                                    <div
+                                                        class="input-wrapper flex items-center rounded-xl p-4 gap-2 bg-[#FBFBFB] overflow-hidden">
+                                                        <img src="{{ asset('assets/images/icons/profile-circle-black.svg') }}"
+                                                            class="w-6 h-6 flex shrink-0" alt="icon">
+                                                        <p class="font-medium text-lg leading-[27px]">
+                                                            {{ $itemParticipant->name }}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="flex flex-col gap-4">
-                                                <p class="font-medium text-aktiv-grey">Occupation</p>
-                                                <div
-                                                    class="input-wrapper flex items-center rounded-xl p-4 gap-2 bg-[#FBFBFB] overflow-hidden">
-                                                    <img src="{{ asset('assets/images/icons/briefcase-black.svg') }}"
-                                                        class="w-6 h-6 flex shrink-0" alt="icon">
-                                                    <p class="font-medium text-lg leading-[27px]">Students</p>
+                                                <div class="flex flex-col gap-4">
+                                                    <p class="font-medium text-aktiv-grey">Occupation</p>
+                                                    <div
+                                                        class="input-wrapper flex items-center rounded-xl p-4 gap-2 bg-[#FBFBFB] overflow-hidden">
+                                                        <img src="{{ asset('assets/images/icons/briefcase-black.svg') }}"
+                                                            class="w-6 h-6 flex shrink-0" alt="icon">
+                                                        <p class="font-medium text-lg leading-[27px]">
+                                                            {{ $itemParticipant->occupation }}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="flex flex-col gap-4">
-                                                <p class="font-medium text-aktiv-grey">Email Address</p>
-                                                <div
-                                                    class="input-wrapper flex items-center rounded-xl p-4 gap-2 bg-[#FBFBFB] overflow-hidden">
-                                                    <img src="{{ asset('assets/images/icons/sms-black.svg') }}"
-                                                        class="w-6 h-6 flex shrink-0" alt="icon">
-                                                    <p class="font-medium text-lg leading-[27px]">Nabnab@gmail.com</p>
+                                                <div class="flex flex-col gap-4">
+                                                    <p class="font-medium text-aktiv-grey">Email Address</p>
+                                                    <div
+                                                        class="input-wrapper flex items-center rounded-xl p-4 gap-2 bg-[#FBFBFB] overflow-hidden">
+                                                        <img src="{{ asset('assets/images/icons/sms-black.svg') }}"
+                                                            class="w-6 h-6 flex shrink-0" alt="icon">
+                                                        <p class="font-medium text-lg leading-[27px]">
+                                                            {{ $itemParticipant->email }}</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
