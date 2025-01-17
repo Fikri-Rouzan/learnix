@@ -19,4 +19,4 @@ Learnix is a website where users can book offline workshops. The main purpose of
 -   Templating Engine: Blade.
 -   Frameworks: Laravel, Filament, and Tailwind CSS.
 -   Database: MySQL.
--   Software: Visual Studio Code, Laragon, and GitHub.
+-   Software: Visual Studio Code and Laragon.
