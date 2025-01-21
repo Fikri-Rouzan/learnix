@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
-    <link rel="icon" href="{{ asset('assets/images/icons/Icon.png') }}">
+    <link rel="icon" href="{{ asset('assets/images/logos/icon.png') }}">
 
     @stack('before-styles')
     <link href="{{ asset('assets/css/output.css') }}" rel="stylesheet">

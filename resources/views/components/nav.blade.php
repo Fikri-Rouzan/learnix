@@ -1,6 +1,6 @@
 <nav class="fixed top-0 flex items-center w-full justify-between p-8 bg-white z-30">
     <a href="{{ route('front.index') }}">
-        <img src="{{ asset('assets/images/logos/Logo.png') }}" class="flex shrink-0" alt="logo">
+        <img src="{{ asset('assets/images/logos/logo.png') }}" class="flex shrink-0" alt="logo">
     </a>
     <ul class="flex items-center justify-center gap-8">
         <li class="font-medium text-aktiv-grey hover:font-semibold hover:text-aktiv-orange transition-all duration-300">
