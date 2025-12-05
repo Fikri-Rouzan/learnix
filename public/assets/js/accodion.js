@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
     // Function to calculate and set heights of accordions
     function calculateAccordionHeights() {
-        const accordions = document.querySelectorAll('.accordion');
+        const accordions = document.querySelectorAll(".accordion");
 
         accordions.forEach((accordion) => {
             // Calculate the height of each accordion element
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     calculateAccordionHeights();
 
     // Recalculate when a new participant is added
-    document.addEventListener('newParticipantAdded', () => {
+    document.addEventListener("newParticipantAdded", () => {
         calculateAccordionHeights();
     });
 });

@@ -3,20 +3,16 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CategoryResource\Pages;
-use App\Filament\Resources\CategoryResource\RelationManagers;
 use App\Models\Category;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class CategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-tag';
 
     public static function form(Form $form): Form
@@ -25,15 +21,25 @@ class CategoryResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name')
                     ->required()
-                    ->maxLength(255),
+                    ->placeholder('Type a category name')
+                    ->maxLength(255)
+                    ->columnSpan([
+                        'default' => 2,
+                        'lg' => 1,
+                    ]),
                 Forms\Components\TextInput::make('tagline')
                     ->required()
-                    ->maxLength(255),
+                    ->placeholder('Type a category tagline')
+                    ->maxLength(255)
+                    ->columnSpan([
+                        'default' => 2,
+                        'lg' => 1,
+                    ]),
                 Forms\Components\FileUpload::make('icon')
+                    ->required()
                     ->image()
                     ->directory('categories')
-                    ->columnSpan(2)
-                    ->required(),
+                    ->columnSpan(2),
             ]);
     }
 

@@ -78,6 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <span class="hidden font-medium text-aktiv-red peer-has-[.invalid]:block">Please fill in the attendant’s data before proceeding.</span>
             </div>
         `;
+
         participantsSection.insertAdjacentHTML("beforeend", newParticipantHTML);
 
         // Dispatch a custom event after adding a new participant
@@ -89,6 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function removeParticipant() {
         const participantCount =
             participantsSection.querySelectorAll(".attendant-wrapper").length;
+
         if (participantCount > 1) {
             participantsSection.removeChild(
                 participantsSection.lastElementChild
@@ -98,6 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     decrementButton.addEventListener("click", () => {
         let count = parseInt(countDisplay.textContent);
+
         if (count > 1) {
             count--;
             countDisplay.textContent = count;
@@ -138,13 +141,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Reset previous validation states
                 wrapper.classList.remove("invalid");
 
-                // Example validation: check if input is empty
+                // Check if input is empty
                 if (!input.checkValidity()) {
                     wrapper.classList.add("invalid");
                     isValid = false;
                 }
-
-                // You can add more specific validation checks here
             });
 
             if (isValid) {

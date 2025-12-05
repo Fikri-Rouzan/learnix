@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\WorkshopResource\Pages;
-use App\Filament\Resources\WorkshopResource\RelationManagers;
 use App\Models\Workshop;
 use Filament\Forms;
 use Filament\Forms\Components\Fieldset;
@@ -12,15 +11,11 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class WorkshopResource extends Resource
 {
     protected static ?string $model = Workshop::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-calendar';
-
     protected static ?string $navigationGroup = 'Workshop Management';
 
     public static function form(Form $form): Form
@@ -31,75 +26,109 @@ class WorkshopResource extends Resource
                     ->schema([
                         Forms\Components\TextInput::make('name')
                             ->required()
-                            ->columnSpan(2)
-                            ->maxLength(255),
+                            ->placeholder('Type the workshop name')
+                            ->maxLength(255)
+                            ->columnSpan(2),
                         Forms\Components\Textarea::make('address')
-                            ->rows(3)
                             ->required()
-                            ->columnSpan(2)
-                            ->maxLength(255),
+                            ->placeholder('Type the workshop address')
+                            ->rows(3)
+                            ->columnSpan(2),
                         Forms\Components\FileUpload::make('thumbnail')
+                            ->required()
                             ->image()
                             ->directory('workshop_thumbnails')
-                            ->columnSpan(2)
-                            ->required(),
+                            ->columnSpan(2),
                         Forms\Components\FileUpload::make('venue_thumbnail')
+                            ->required()
+                            ->label('Venue Thumbnail')
                             ->image()
                             ->directory('venue_thumbnails')
-                            ->columnSpan(2)
-                            ->required(),
+                            ->columnSpan(2),
                         Forms\Components\FileUpload::make('bg_map')
+                            ->required()
                             ->image()
+                            ->label('Background Map')
                             ->directory('maps')
-                            ->columnSpan(2)
-                            ->required(),
+                            ->columnSpan(2),
                         Forms\Components\Repeater::make('benefits')
                             ->relationship('benefits')
-                            ->columnSpan(2)
                             ->schema([
                                 Forms\Components\TextInput::make('name')
                                     ->required()
+                                    ->placeholder('Type the benefit name')
                                     ->maxLength(255),
-                            ]),
+                            ])
+                            ->columnSpan(2),
                     ]),
-
                 Fieldset::make('Additional Information')
                     ->schema([
                         Forms\Components\Textarea::make('about')
+                            ->required()
+                            ->placeholder('Type the workshop description')
                             ->rows(5)
-                            ->columnSpan(2)
-                            ->required(),
+                            ->columnSpan(2),
                         Forms\Components\TextInput::make('price')
                             ->required()
+                            ->placeholder('Type the workshop price')
                             ->numeric()
-                            ->prefix('IDR'),
+                            ->minValue(0)
+                            ->prefix('IDR')
+                            ->columnSpan([
+                                'default' => 2,
+                                'lg' => 1,
+                            ]),
                         Forms\Components\Select::make('is_open')
+                            ->required()
+                            ->label('Availability Status')
                             ->options([
                                 true => 'Open',
                                 false => 'Not Available',
                             ])
-                            ->required(),
+                            ->columnSpan([
+                                'default' => 2,
+                                'lg' => 1,
+                            ]),
                         Forms\Components\Select::make('has_started')
+                            ->required()
+                            ->label('Started Status')
                             ->options([
                                 true => 'Started',
                                 false => 'Not Started Yet',
                             ])
-                            ->required(),
+                            ->columnSpan([
+                                'default' => 2,
+                                'lg' => 1,
+                            ]),
                         Forms\Components\Select::make('category_id')
+                            ->required()
                             ->relationship('category', 'name')
                             ->searchable()
                             ->preload()
-                            ->required(),
+                            ->columnSpan([
+                                'default' => 2,
+                                'lg' => 1,
+                            ]),
                         Forms\Components\Select::make('workshop_instructor_id')
+                            ->required()
                             ->relationship('instructor', 'name')
                             ->searchable()
                             ->preload()
-                            ->required(),
+                            ->columnSpan([
+                                'default' => 2,
+                                'lg' => 1,
+                            ]),
                         Forms\Components\DatePicker::make('started_at')
-                            ->required(),
+                            ->required()
+                            ->label('Start Date')
+                            ->columnSpan([
+                                'default' => 2,
+                                'lg' => 1,
+                            ]),
                         Forms\Components\TimePicker::make('time_at')
-                            ->columnSpan(2)
-                            ->required(),
+                            ->required()
+                            ->label('Time')
+                            ->columnSpan(2),
                     ]),
             ]);
     }

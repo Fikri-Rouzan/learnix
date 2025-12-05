@@ -3,22 +3,17 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\WorkshopInstructorResource\Pages;
-use App\Filament\Resources\WorkshopInstructorResource\RelationManagers;
 use App\Models\WorkshopInstructor;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class WorkshopInstructorResource extends Resource
 {
     protected static ?string $model = WorkshopInstructor::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-users';
-
     protected static ?string $navigationGroup = 'Workshop User Management';
 
     public static function form(Form $form): Form
@@ -27,15 +22,25 @@ class WorkshopInstructorResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name')
                     ->required()
-                    ->maxLength(255),
+                    ->placeholder('Type the instructor name')
+                    ->maxLength(255)
+                    ->columnSpan([
+                        'default' => 2,
+                        'lg' => 1,
+                    ]),
                 Forms\Components\TextInput::make('occupation')
                     ->required()
-                    ->maxLength(255),
+                    ->placeholder('Type the instructor occupation')
+                    ->maxLength(255)
+                    ->columnSpan([
+                        'default' => 2,
+                        'lg' => 1,
+                    ]),
                 Forms\Components\FileUpload::make('avatar')
+                    ->required()
                     ->image()
                     ->directory('instructors')
-                    ->columnSpan(2)
-                    ->required(),
+                    ->columnSpan(2),
             ]);
     }
 

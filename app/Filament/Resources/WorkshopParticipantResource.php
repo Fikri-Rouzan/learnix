@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\WorkshopParticipantResource\Pages;
-use App\Filament\Resources\WorkshopParticipantResource\RelationManagers;
 use App\Models\WorkshopParticipant;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -11,15 +10,11 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class WorkshopParticipantResource extends Resource
 {
     protected static ?string $model = WorkshopParticipant::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-users';
-
     protected static ?string $navigationGroup = 'Workshop User Management';
 
     public static function form(Form $form): Form
@@ -28,24 +23,44 @@ class WorkshopParticipantResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name')
                     ->required()
-                    ->columnSpan(2)
-                    ->maxLength(255),
+                    ->placeholder('Type the participant name')
+                    ->maxLength(255)
+                    ->columnSpan(2),
                 Forms\Components\TextInput::make('occupation')
                     ->required()
-                    ->maxLength(255),
+                    ->placeholder('Type the participant occupation')
+                    ->maxLength(255)
+                    ->columnSpan([
+                        'default' => 2,
+                        'lg' => 1,
+                    ]),
                 Forms\Components\TextInput::make('email')
                     ->required()
-                    ->maxLength(255),
+                    ->placeholder('Type the participant email')
+                    ->maxLength(255)
+                    ->columnSpan([
+                        'default' => 2,
+                        'lg' => 1,
+                    ]),
                 Forms\Components\Select::make('workshop_id')
+                    ->required()
                     ->relationship('workshop', 'name')
                     ->searchable()
                     ->preload()
-                    ->required(),
+                    ->columnSpan([
+                        'default' => 2,
+                        'lg' => 1,
+                    ]),
                 Forms\Components\Select::make('booking_transaction_id')
+                    ->required()
+                    ->label('Booking Transaction')
                     ->relationship('bookingTransaction', 'booking_trx_id')
                     ->searchable()
                     ->preload()
-                    ->required(),
+                    ->columnSpan([
+                        'default' => 2,
+                        'lg' => 1,
+                    ]),
             ]);
     }
 

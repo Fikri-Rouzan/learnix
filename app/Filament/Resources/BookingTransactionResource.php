@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\BookingTransactionResource\Pages;
-use App\Filament\Resources\BookingTransactionResource\RelationManagers;
 use App\Models\BookingTransaction;
 use App\Models\Workshop;
 use Filament\Forms;
@@ -16,16 +15,11 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use PhpParser\Node\Stmt\Label;
 
 class BookingTransactionResource extends Resource
 {
     protected static ?string $model = BookingTransaction::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-currency-dollar';
-
     protected static ?string $navigationGroup = 'Workshop Management';
 
     public static function form(Form $form): Form
@@ -36,10 +30,10 @@ class BookingTransactionResource extends Resource
                     Forms\Components\Wizard\Step::make('Product and Price')
                         ->schema([
                             Forms\Components\Select::make('workshop_id')
+                                ->required()
                                 ->relationship('workshop', 'name')
                                 ->searchable()
                                 ->preload()
-                                ->required()
                                 ->live()
                                 ->afterStateUpdated(function ($state, callable $set) {
                                     $workshop = Workshop::find($state);
@@ -51,17 +45,23 @@ class BookingTransactionResource extends Resource
                                 }),
                             Forms\Components\TextInput::make('quantity')
                                 ->required()
+                                ->placeholder('Type the quantity of people')
                                 ->numeric()
+                                ->minValue(1)
+                                ->default(1)
                                 ->prefix('Qty People')
                                 ->live()
                                 ->afterStateUpdated(function ($state, callable $get, callable $set) {
+                                    if ($state < 1) {
+                                        $set('quantity', 1);
+                                        $state = 1;
+                                    }
+
                                     $price = $get('price');
                                     $subTotal = $price * $state;
                                     $tax = $subTotal * 0.11;
                                     $totalAmount = $subTotal + $tax;
-
                                     $set('total_amount', $totalAmount);
-
                                     $participants = $get('participants') ?? [];
                                     $currentCount = count($participants);
 
@@ -72,6 +72,7 @@ class BookingTransactionResource extends Resource
                                     } else {
                                         $participants = array_slice($participants, 0, $state);
                                     }
+
                                     $set('participants', $participants);
                                 })
                                 ->afterStateHydrated(function ($state, callable $get, callable $set) {
@@ -79,11 +80,12 @@ class BookingTransactionResource extends Resource
                                     $subTotal = $price * $state;
                                     $tax = $subTotal * 0.11;
                                     $totalAmount = $subTotal + $tax;
-
                                     $set('total_amount', $totalAmount);
                                 }),
                             Forms\Components\TextInput::make('total_amount')
                                 ->required()
+                                ->label('Total Amount')
+                                ->placeholder('AUTO')
                                 ->numeric()
                                 ->prefix('IDR')
                                 ->readOnly()
@@ -93,63 +95,101 @@ class BookingTransactionResource extends Resource
                                     Grid::make(2)
                                         ->schema([
                                             Forms\Components\TextInput::make('name')
+                                                ->required()
                                                 ->label('Participant Name')
-                                                ->columnSpan(2)
-                                                ->required(),
+                                                ->placeholder('Type the participant name')
+                                                ->columnSpan(2),
                                             Forms\Components\TextInput::make('occupation')
+                                                ->required()
                                                 ->label('Occupation')
-                                                ->required(),
+                                                ->placeholder('Type the participant occupation')
+                                                ->columnSpan([
+                                                    'default' => 2,
+                                                    'lg' => 1,
+                                                ]),
                                             Forms\Components\TextInput::make('email')
+                                                ->required()
                                                 ->label('Email')
-                                                ->required(),
+                                                ->placeholder('Type the participant email')
+                                                ->columnSpan([
+                                                    'default' => 2,
+                                                    'lg' => 1,
+                                                ]),
                                         ]),
                                 ])
-                                ->columns(1)
                                 ->label('Participant Details'),
                         ]),
                     Forms\Components\Wizard\Step::make('Customer Information')
                         ->schema([
                             Forms\Components\TextInput::make('name')
                                 ->required()
+                                ->placeholder('Type the customer name')
                                 ->maxLength(255),
                             Forms\Components\TextInput::make('email')
                                 ->required()
+                                ->placeholder('Type the customer email')
                                 ->maxLength(255),
                             Forms\Components\TextInput::make('phone')
                                 ->required()
-                                ->maxLength(255),
+                                ->label('Phone Number')
+                                ->placeholder('Type the customer phone number')
+                                ->tel()
+                                ->live()
+                                ->afterStateUpdated(function (callable $set, $state) {
+                                    $cleaned = preg_replace('/[^0-9]/', '', $state);
+
+                                    if ($state !== $cleaned) {
+                                        $set('phone', $cleaned);
+                                    }
+                                }),
                             Forms\Components\TextInput::make('customer_bank_name')
                                 ->required()
+                                ->label('Customer Bank Name')
+                                ->placeholder('Type the customer bank name')
                                 ->maxLength(255),
                             Forms\Components\TextInput::make('customer_bank_account')
                                 ->required()
+                                ->label('Customer Bank Account')
+                                ->placeholder('Type the customer bank account')
                                 ->maxLength(255),
                             Forms\Components\TextInput::make('customer_bank_number')
                                 ->required()
-                                ->maxLength(255),
+                                ->label('Customer Bank Number')
+                                ->placeholder('Type the customer bank number')
+                                ->tel()
+                                ->live()
+                                ->afterStateUpdated(function (callable $set, $state) {
+                                    $cleaned = preg_replace('/[^0-9]/', '', $state);
+
+                                    if ($state !== $cleaned) {
+                                        $set('customer_bank_number', $cleaned);
+                                    }
+                                }),
                             Forms\Components\TextInput::make('booking_trx_id')
                                 ->required()
+                                ->label('Booking Transaction ID')
+                                ->placeholder('AUTO')
                                 ->readOnly()
-                                ->maxLength(255),
+                                ->default(fn() => BookingTransaction::generateUniqueTrxId()),
                         ]),
                     Forms\Components\Wizard\Step::make('Payment Information')
                         ->schema([
                             ToggleButtons::make('is_paid')
-                                ->label('Has it been paid?')
+                                ->required()
+                                ->label('Has It Been Paid?')
                                 ->boolean()
                                 ->grouped()
                                 ->icons([
                                     true => 'heroicon-o-pencil',
                                     false => 'heroicon-o-clock',
-                                ])
-                                ->required(),
+                                ]),
                             Forms\Components\FileUpload::make('proof')
+                                ->required()
                                 ->image()
-                                ->directory('proofs')
-                                ->required(),
+                                ->directory('proofs'),
                         ]),
                 ])
-                    ->columnSpan('full')
+                    ->columnSpan(2)
                     ->columns(1)
                     ->skippable()
             ]);

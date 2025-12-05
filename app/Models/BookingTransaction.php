@@ -31,6 +31,7 @@ class BookingTransaction extends Model
     public static function generateUniqueTrxId()
     {
         $prefix = 'LEARNIX';
+
         do {
             $randomString = $prefix . mt_rand(100000, 999999);
         } while (self::where('booking_trx_id', $randomString)->exists());
