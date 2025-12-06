@@ -9,7 +9,7 @@
     <x-category :categories="$categories" />
     <x-workshop :newWorkshops="$newWorkshops" />
 
-    <div class="w-full py-[52px] bg-white mt-[100px]">
+    <div class="w-full py-8 md:py-[52px] bg-white mt-16 md:mt-[100px]">
         <x-testimonial />
         <x-benefit />
     </div>
