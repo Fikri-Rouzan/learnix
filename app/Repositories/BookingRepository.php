@@ -34,6 +34,7 @@ class BookingRepository implements BookingRepositoryInterface
     {
         $orderData = session('orderData', []);
         $orderData = array_merge($orderData, $data);
+
         session(['orderData' => $orderData]);
     }
 

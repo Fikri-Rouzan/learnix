@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Log;
 class BookingService
 {
     protected $bookingRepository;
-
     protected $workshopRepository;
 
     public function __construct(WorkshopRepositoryInterface $workshopRepository, BookingRepositoryInterface $bookingRepository)
@@ -24,9 +23,7 @@ class BookingService
     public function storeBooking(array $validatedData)
     {
         $existingData = $this->bookingRepository->getOrderDataFromSession();
-
         $updateData = array_merge($existingData, $validatedData);
-
         $this->bookingRepository->saveToSession($updateData);
 
         return $updateData;
@@ -46,7 +43,6 @@ class BookingService
         }
 
         $workshop = $this->workshopRepository->find($orderData['workshop_id']);
-
         $quantity = isset($orderData['quantity']) ? $orderData['quantity'] : 1;
 
         $subTotalAmount = $workshop->price * $quantity;

@@ -1212,12 +1212,7 @@ video {
     background-image: linear-gradient(0deg, #5b8ce9 0%, #4eb6f5 100%);
 }
 
-.bg-\[linear-gradient\(0deg\2c
-    rgba\(230\2c
-    231\2c
-    235\2c
-    0\)_0\%\2c
-    \#E6E7EB_100\%\)\] {
+.bg-\[linear-gradient\(0deg\2c_rgba\(230\2c_231\2c_235\2c_0\)_0\%\2c_\#E6E7EB_100\%\)\] {
     background-image: linear-gradient(
         0deg,
         rgba(230, 231, 235, 0) 0%,
@@ -1225,15 +1220,7 @@ video {
     );
 }
 
-.bg-\[linear-gradient\(270deg\2c
-    rgba\(235\2c
-    87\2c
-    87\2c
-    0\)_0\%\2c
-    rgba\(235\2c
-    87\2c
-    87\2c
-    0\.09\)_100\%\)\] {
+.bg-\[linear-gradient\(270deg\2c_rgba\(235\2c_87\2c_87\2c_0\)_0\%\2c_rgba\(235\2c_87\2c_87\2c_0\.09\)_100\%\)\] {
     background-image: linear-gradient(
         270deg,
         rgba(235, 87, 87, 0) 0%,

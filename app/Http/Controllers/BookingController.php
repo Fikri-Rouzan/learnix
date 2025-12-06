@@ -8,7 +8,6 @@ use App\Http\Requests\StorePaymentRequest;
 use App\Models\BookingTransaction;
 use App\Models\Workshop;
 use App\Services\BookingService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class BookingController extends Controller
@@ -82,7 +81,6 @@ class BookingController extends Controller
     public function checkBookingDetails(StoreCheckBookingRequest $request)
     {
         $validated = $request->validated();
-
         $myBookingDetails = $this->bookingService->getMyBookingDetails($validated);
 
         if ($myBookingDetails) {

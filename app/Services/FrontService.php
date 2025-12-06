@@ -8,7 +8,6 @@ use App\Repositories\Contracts\WorkshopRepositoryInterface;
 class FrontService
 {
     protected $categoryRepository;
-
     protected $workshopRepository;
 
     public function __construct(WorkshopRepositoryInterface $workshopRepository, CategoryRepositoryInterface $categoryRepository)

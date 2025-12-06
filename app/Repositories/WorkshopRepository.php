@@ -20,6 +20,7 @@ class WorkshopRepository implements WorkshopRepositoryInterface
     public function getPrice($workshopId)
     {
         $workshop = $this->find($workshopId);
+
         return $workshop ? $workshop->price : 0;
     }
 }
