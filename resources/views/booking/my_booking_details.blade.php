@@ -8,17 +8,23 @@
     <div id="background" class="relative w-full">
         <div class="absolute w-full h-[300px] bg-[linear-gradient(0deg,#4EB6F5_0%,#5B8CE9_100%)] -z-10"></div>
     </div>
-    <section id="Content" class="w-full max-w-[1280px] mx-auto px-[52px] mt-16 mb-[100px]">
-        <div class="flex flex-col gap-16">
-            <div class="flex flex-col items-center gap-1">
-                <p class="font-bold text-[32px] leading-[48px] capitalize text-white">Your Booking Details</p>
-                <p class="font-semibold text-white">Happy learning!</p>
+
+    <section id="Content" class="w-full max-w-[1280px] mx-auto px-4 md:px-[52px] mt-8 md:mt-16 mb-16 md:mb-[100px]">
+        <div class="flex flex-col gap-8 md:gap-16">
+            <div class="flex flex-col items-center gap-1 text-center">
+                <p class="font-bold text-2xl md:text-[32px] leading-snug md:leading-[48px] capitalize text-white">
+                    Your Booking Details
+                </p>
+                <p class="font-semibold text-white text-sm md:text-base">Happy Learning!</p>
             </div>
-            <main class="flex gap-8">
-                <section id="Sidebar" class="group flex flex-col w-[420px] h-fit rounded-3xl p-8 bg-white">
+
+            <main class="flex flex-col lg:flex-row gap-8">
+                <section id="Sidebar"
+                    class="group flex flex-col w-full lg:w-[420px] shrink-0 h-fit rounded-3xl p-6 md:p-8 bg-white shadow-lg md:shadow-none">
                     <div class="flex flex-col gap-4">
                         <h2 class="font-Neue-Plak-bold text-xl leading-[27.5px]">Workshop Details</h2>
-                        <div class="thumbnail-container relative h-[240px] rounded-xl bg-[#D9D9D9] overflow-hidden">
+                        <div
+                            class="thumbnail-container relative h-[200px] md:h-[240px] rounded-xl bg-[#D9D9D9] overflow-hidden">
                             <img src="{{ Storage::url($myBookingDetails->workshop->thumbnail) }}"
                                 class="w-full h-full object-cover" alt="thumbnail">
                         </div>
@@ -27,18 +33,19 @@
                                 <div class="flex items-center gap-1">
                                     <img src="{{ asset('assets/images/icons/calendar.svg') }}" class="w-6 h-6 flex shrink-0"
                                         alt="icon">
-                                    <span
-                                        class="font-medium text-aktiv-grey">{{ $myBookingDetails->workshop->started_at->format('d M, Y') }}</span>
+                                    <span class="font-medium text-aktiv-grey text-sm md:text-base">
+                                        {{ $myBookingDetails->workshop->started_at->format('d M, Y') }}
+                                    </span>
                                 </div>
                                 <div class="flex items-center gap-1">
                                     <img src="{{ asset('assets/images/icons/timer.svg') }}" class="w-6 h-6 flex shrink-0"
                                         alt="icon">
-                                    <span
-                                        class="font-medium text-aktiv-grey">{{ $myBookingDetails->workshop->time_at->format('h:i A') }}
-                                        Onwards</span>
+                                    <span class="font-medium text-aktiv-grey text-sm md:text-base">
+                                        {{ $myBookingDetails->workshop->time_at->format('h:i A') }} Onwards
+                                    </span>
                                 </div>
                             </div>
-                            <h3 class="font-Neue-Plak-bold text-xl">{{ $myBookingDetails->workshop->name }}</h3>
+                            <h3 class="font-Neue-Plak-bold text-lg md:text-xl">{{ $myBookingDetails->workshop->name }}</h3>
                         </div>
                     </div>
                     <div id="closes-section"
@@ -51,13 +58,15 @@
                                         class="w-full h-full object-cover" alt="photo">
                                 </div>
                                 <div class="flex flex-col gap-[2px] flex-1">
-                                    <p class="font-semibold text-lg leading-[27px]">
-                                        {{ $myBookingDetails->workshop->instructor->name }}</p>
-                                    <p class="font-medium text-aktiv-grey">
-                                        {{ $myBookingDetails->workshop->instructor->occupation }}</p>
+                                    <p class="font-semibold text-base md:text-lg leading-[27px]">
+                                        {{ $myBookingDetails->workshop->instructor->name }}
+                                    </p>
+                                    <p class="font-medium text-sm md:text-base text-aktiv-grey">
+                                        {{ $myBookingDetails->workshop->instructor->occupation }}
+                                    </p>
                                 </div>
                                 <img src="{{ asset('assets/images/icons/verify.svg') }}"
-                                    class="flex w-[62px] h-[62px] shrink-0" alt="icon">
+                                    class="flex w-[50px] h-[50px] md:w-[62px] md:h-[62px] shrink-0" alt="icon">
                             </div>
                         </div>
                         <div class="flex flex-col gap-4">
@@ -68,7 +77,8 @@
                                     <div class="flex items-center gap-2">
                                         <img src="{{ asset('assets/images/icons/tick-circle.svg') }}"
                                             class="w-6 h-6 flex shrink-0" alt="icon">
-                                        <p class="font-semibold text-lg leading-[27px]">{{ $itemBenefit->name }}</p>
+                                        <p class="font-semibold text-base md:text-lg leading-[27px]">
+                                            {{ $itemBenefit->name }}</p>
                                     </div>
                                 </div>
                             @endforeach
@@ -81,15 +91,18 @@
                                         class="w-full h-full object-cover" alt="location">
                                 </div>
                                 <div class="flex flex-col gap-3">
-                                    <p class="font-medium leading-[25.6px] text-aktiv-grey">
-                                        {{ $myBookingDetails->workshop->address }}</p>
+                                    <p class="font-medium text-sm md:text-base leading-[25.6px] text-aktiv-grey">
+                                        {{ $myBookingDetails->workshop->address }}
+                                    </p>
                                     <a href="https://www.google.com/maps/place/{{ $myBookingDetails->workshop->address }}"
-                                        class="font-semibold text-aktiv-orange" target="_blank">View in Google Maps</a>
+                                        class="font-semibold text-aktiv-orange text-sm md:text-base" target="_blank">View in
+                                        Google Maps</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <label class="group mt-8">
+
+                    <label class="group mt-8 cursor-pointer">
                         <input type="checkbox" name="hidden" class="hidden">
                         <p
                             class="before:content-['Show_Less'] group-has-[:checked]:before:content-['Show_More'] before:font-semibold before:text-lg before:leading-[27px] flex items-center justify-center gap-[6px]">
@@ -98,108 +111,119 @@
                         </p>
                     </label>
                 </section>
-                <div class="flex flex-col w-[724px] gap-8">
-                    <div class="flex flex-col rounded-3xl bg-white overflow-hidden">
+
+                <div class="flex flex-col w-full flex-1 gap-8">
+                    <div class="flex flex-col rounded-3xl bg-white overflow-hidden shadow-lg md:shadow-none">
                         @if ($myBookingDetails->is_paid)
-                            <div class="flex items-center p-8 gap-4 bg-[#D4EAE8]">
+                            <div class="flex items-center p-6 md:p-8 gap-4 bg-[#D4EAE8]">
                                 <img src="{{ asset('assets/images/icons/wallet-check.svg') }}"
-                                    class="w-[74px] h-[74px] flex shrink-0" alt="icon">
+                                    class="w-[50px] h-[50px] md:w-[74px] md:h-[74px] flex shrink-0" alt="icon">
                                 <div class="flex flex-col gap-1">
-                                    <p class="font-semibold text-lg leading-[27px]">Payment Successful!</p>
-                                    <p class="font-medium text-lg leading-[27px] text-[#58938E]">Your order is confirmed.
-                                        Thank you for joining us!</p>
+                                    <p class="font-semibold text-base md:text-lg leading-[27px]">Payment Successful!</p>
+                                    <p
+                                        class="font-medium text-sm md:text-lg leading-[21px] md:leading-[27px] text-[#58938E]">
+                                        Your order is confirmed. Thank you for joining us!
+                                    </p>
                                 </div>
                             </div>
                         @else
-                            <div class="flex items-center p-8 gap-4 bg-[#FDF6E4]">
+                            <div class="flex items-center p-6 md:p-8 gap-4 bg-[#FDF6E4]">
                                 <img src="{{ asset('assets/images/icons/wallet-time.svg') }}"
-                                    class="w-[74px] h-[74px] flex shrink-0" alt="icon">
+                                    class="w-[50px] h-[50px] md:w-[74px] md:h-[74px] flex shrink-0" alt="icon">
                                 <div class="flex flex-col gap-1">
-                                    <p class="font-semibold text-lg leading-[27px]">Payment Processing</p>
-                                    <p class="font-medium text-lg leading-[27px] text-[#B4A476]">Your order is pending
-                                        verification. Please wait a few minutes.</p>
+                                    <p class="font-semibold text-base md:text-lg leading-[27px]">Payment Processing</p>
+                                    <p
+                                        class="font-medium text-sm md:text-lg leading-[21px] md:leading-[27px] text-[#B4A476]">
+                                        Your order is pending verification. Please wait a few minutes.
+                                    </p>
                                 </div>
                             </div>
                         @endif
 
-                        <div class="flex flex-col gap-4 p-8">
+                        <div class="flex flex-col gap-4 p-6 md:p-8">
                             <h2 class="font-Neue-Plak-bold text-xl leading-[27.5px]">Booking Details</h2>
-                            <div class="flex flex-col rounded-xl border border-[#E6E7EB] p-6 gap-4">
+                            <div class="flex flex-col rounded-xl border border-[#E6E7EB] p-4 md:p-6 gap-4">
                                 <div class="flex items-center justify-between">
-                                    <p class="font-medium text-aktiv-grey">Booking ID</p>
-                                    <p class="font-semibold text-lg leading-[27px] text-right">
-                                        {{ $myBookingDetails->booking_trx_id }}</p>
+                                    <p class="font-medium text-sm md:text-base text-aktiv-grey">Booking ID</p>
+                                    <p class="font-semibold text-base md:text-lg leading-[27px] text-right">
+                                        {{ $myBookingDetails->booking_trx_id }}
+                                    </p>
                                 </div>
                                 <div class="flex items-center justify-between">
-                                    <p class="font-medium text-aktiv-grey">Quantity</p>
-                                    <p class="font-semibold text-lg leading-[27px] text-right">
-                                        {{ $myBookingDetails->quantity }}</p>
+                                    <p class="font-medium text-sm md:text-base text-aktiv-grey">Quantity</p>
+                                    <p class="font-semibold text-base md:text-lg leading-[27px] text-right">
+                                        {{ $myBookingDetails->quantity }}
+                                    </p>
                                 </div>
                                 <div class="flex items-center justify-between">
-                                    <p class="font-medium text-aktiv-grey">Price</p>
-                                    <p class="font-semibold text-lg leading-[27px] text-right">Rp
+                                    <p class="font-medium text-sm md:text-base text-aktiv-grey">Price</p>
+                                    <p class="font-semibold text-base md:text-lg leading-[27px] text-right">Rp
                                         {{ number_format($subTotalAmount, 0, ',', '.') }}</p>
                                 </div>
                                 <div class="flex items-center justify-between">
-                                    <p class="font-medium text-aktiv-grey">PPN 11%</p>
-                                    <p class="font-semibold text-lg leading-[27px] text-right">Rp
+                                    <p class="font-medium text-sm md:text-base text-aktiv-grey">PPN 11%</p>
+                                    <p class="font-semibold text-base md:text-lg leading-[27px] text-right">Rp
                                         {{ number_format($totalTax, 0, ',', '.') }}</p>
                                 </div>
                                 <hr class="border-[#E6E7EB]">
                                 <div class="flex items-center justify-between">
-                                    <p class="font-medium text-aktiv-grey">Total Price</p>
-                                    <p class="font-semibold text-lg leading-[27px] text-right text-aktiv-red"> Rp
+                                    <p class="font-medium text-sm md:text-base text-aktiv-grey">Total Price</p>
+                                    <p class="font-semibold text-base md:text-lg leading-[27px] text-right text-aktiv-red">
+                                        Rp
                                         {{ number_format($myBookingDetails['total_amount'], 0, ',', '.') }}
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-col rounded-3xl p-8 gap-4 bg-white">
+                    <div class="flex flex-col rounded-3xl p-6 md:p-8 gap-4 bg-white shadow-lg md:shadow-none">
                         <h2 class="font-Neue-Plak-bold text-xl leading-[27.5px]">Your Bank Account</h2>
                         <div class="flex flex-col gap-6">
                             <div class="flex flex-col gap-4">
-                                <p class="font-medium text-aktiv-grey">Bank Name</p>
+                                <p class="font-medium text-aktiv-grey text-sm md:text-base">Bank Name</p>
                                 <div
                                     class="input-wrapper flex items-center rounded-xl p-4 gap-2 bg-[#FBFBFB] overflow-hidden">
                                     <img src="{{ asset('assets/images/icons/bank-black.svg') }}"
                                         class="w-6 h-6 flex shrink-0" alt="icon">
-                                    <p class="font-semibold text-lg leading-[27px]">
-                                        {{ $myBookingDetails->customer_bank_name }}</p>
+                                    <p class="font-semibold text-base md:text-lg leading-[27px] break-all">
+                                        {{ $myBookingDetails->customer_bank_name }}
+                                    </p>
                                 </div>
                             </div>
                             <div class="flex flex-col gap-4">
-                                <p class="font-medium text-aktiv-grey">Full Name</p>
+                                <p class="font-medium text-aktiv-grey text-sm md:text-base">Full Name</p>
                                 <div
                                     class="input-wrapper flex items-center rounded-xl p-4 gap-2 bg-[#FBFBFB] overflow-hidden">
                                     <img src="{{ asset('assets/images/icons/profile-circle-black.svg') }}"
                                         class="w-6 h-6 flex shrink-0" alt="icon">
-                                    <p class="font-semibold text-lg leading-[27px]">
-                                        {{ $myBookingDetails->customer_bank_account }}</p>
+                                    <p class="font-semibold text-base md:text-lg leading-[27px] break-all">
+                                        {{ $myBookingDetails->customer_bank_account }}
+                                    </p>
                                 </div>
                             </div>
                             <div class="flex flex-col gap-4">
-                                <p class="font-medium text-aktiv-grey">Bank Account Number</p>
+                                <p class="font-medium text-aktiv-grey text-sm md:text-base">Bank Account Number</p>
                                 <div
                                     class="input-wrapper flex items-center rounded-xl p-4 gap-2 bg-[#FBFBFB] overflow-hidden">
                                     <img src="{{ asset('assets/images/icons/card-edit-black.svg') }}"
                                         class="w-6 h-6 flex shrink-0" alt="icon">
-                                    <p class="font-semibold text-lg leading-[27px]">
-                                        {{ $myBookingDetails->customer_bank_number }}</p>
+                                    <p class="font-semibold text-base md:text-lg leading-[27px] break-all">
+                                        {{ $myBookingDetails->customer_bank_number }}
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-col rounded-3xl p-8 gap-8 bg-white">
+                    <div class="flex flex-col rounded-3xl p-6 md:p-8 gap-8 bg-white shadow-lg md:shadow-none">
                         <div class="flex flex-col gap-4">
                             <h2 class="font-Neue-Plak-bold text-xl leading-[27.5px]">Attendants Details</h2>
                             <div class="flex flex-col gap-6">
                                 @foreach ($myBookingDetails->participants as $itemParticipant)
                                     <div class="attendant-wrapper flex flex-col gap-[10px]">
-                                        <div id="Attendant-1"
+                                        <div id="Attendant-{{ $loop->iteration }}"
                                             class="group/accordion peer flex flex-col rounded-2xl border border-[#E6E7EB] p-6">
-                                            <label class="flex items-center justify-between">
-                                                <p class="font-semibold text-lg leading-[27px]">Attendants
+                                            <label class="flex items-center justify-between cursor-pointer">
+                                                <p class="font-semibold text-lg leading-[27px]">Attendant
                                                     {{ $loop->iteration }}</p>
                                                 <input type="checkbox" name="accodion" class="hidden">
                                                 <img src="{{ asset('assets/images/icons/arrow-square-up.svg') }}"
@@ -210,32 +234,35 @@
                                                 class="accordion flex flex-col gap-6 mt-6 transition-all duration-300 group-has-[:checked]/accordion:!h-0 group-has-[:checked]/accordion:mt-0 overflow-y-hidden">
                                                 <hr class="border-[#E6E7EB]">
                                                 <div class="flex flex-col gap-4">
-                                                    <p class="font-medium text-aktiv-grey">Full Name</p>
+                                                    <p class="font-medium text-aktiv-grey text-sm md:text-base">Full Name
+                                                    </p>
                                                     <div
                                                         class="input-wrapper flex items-center rounded-xl p-4 gap-2 bg-[#FBFBFB] overflow-hidden">
                                                         <img src="{{ asset('assets/images/icons/profile-circle-black.svg') }}"
                                                             class="w-6 h-6 flex shrink-0" alt="icon">
-                                                        <p class="font-medium text-lg leading-[27px]">
+                                                        <p class="font-semibold text-base md:text-lg leading-[27px]">
                                                             {{ $itemParticipant->name }}</p>
                                                     </div>
                                                 </div>
                                                 <div class="flex flex-col gap-4">
-                                                    <p class="font-medium text-aktiv-grey">Occupation</p>
+                                                    <p class="font-medium text-aktiv-grey text-sm md:text-base">Occupation
+                                                    </p>
                                                     <div
                                                         class="input-wrapper flex items-center rounded-xl p-4 gap-2 bg-[#FBFBFB] overflow-hidden">
                                                         <img src="{{ asset('assets/images/icons/briefcase-black.svg') }}"
                                                             class="w-6 h-6 flex shrink-0" alt="icon">
-                                                        <p class="font-medium text-lg leading-[27px]">
+                                                        <p class="font-semibold text-base md:text-lg leading-[27px]">
                                                             {{ $itemParticipant->occupation }}</p>
                                                     </div>
                                                 </div>
                                                 <div class="flex flex-col gap-4">
-                                                    <p class="font-medium text-aktiv-grey">Email</p>
+                                                    <p class="font-medium text-aktiv-grey text-sm md:text-base">Email</p>
                                                     <div
                                                         class="input-wrapper flex items-center rounded-xl p-4 gap-2 bg-[#FBFBFB] overflow-hidden">
                                                         <img src="{{ asset('assets/images/icons/sms-black.svg') }}"
                                                             class="w-6 h-6 flex shrink-0" alt="icon">
-                                                        <p class="font-medium text-lg leading-[27px]">
+                                                        <p
+                                                            class="font-semibold text-base md:text-lg leading-[27px] break-all">
                                                             {{ $itemParticipant->email }}</p>
                                                     </div>
                                                 </div>

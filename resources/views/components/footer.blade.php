@@ -4,7 +4,7 @@
             <img src="{{ asset('assets/images/logos/logo-blue.svg') }}" class="h-10" alt="logo">
             <p class="font-medium text-aktiv-grey text-sm md:text-base">
                 Learnix delivers high-quality education through dedicated,
-                <br class="hidden md:block"> {{-- Enter hanya di desktop --}}
+                <br class="hidden md:block">
                 face-to-face learning experiences.
             </p>
         </div>
