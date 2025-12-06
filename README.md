@@ -17,6 +17,6 @@ Learnix is a website where users can book offline workshops. The main purpose of
 -   🎨 **Stylesheet Language:** CSS.
 -   ⚙️ **Templating Engine:** Blade.
 -   🧩 **Frameworks:** Laravel and Tailwind CSS.
--   ⚛️ **Library:** Filament.
+-   ⚛️ **Libraries:** Filament and Swiper.
 -   🗄️ **Database:** MySQL.
 -   💻 **Software:** Visual Studio Code and Laragon.

@@ -1,20 +1,17 @@
 @extends('layouts.app')
 
-@section('title')
-    {{ $category->name }} Category
-@endsection
+@section('title', $category->name . ' Category')
 
 @section('content')
-    <div class="h-[112px]">
-        <x-nav />
-    </div>
+    <x-nav />
+
     <section id="Category" class="w-full max-w-[1280px] mx-auto px-[52px] mt-[52px] mb-[100px]">
         <div class="flex flex-col gap-9">
             <div class="flex flex-col items-center gap-1">
                 <h1 class="font-Neue-Plak-bold text-[32px] leading-[44.54px] capitalize">{{ $category->name }}
                     ({{ $category->workshops->count() }})</h1>
                 <div class="flex items-center gap-2 ">
-                    <a class="font-medium text-aktiv-grey last:font-semibold last:text-aktiv-black">Homepage</a>
+                    <a class="font-medium text-aktiv-grey last:font-semibold last:text-aktiv-black">Home</a>
                     <span>></span>
                     <a class="font-medium text-aktiv-grey last:font-semibold last:text-aktiv-black">{{ $category->name }}
                         Category</a>
@@ -40,6 +37,7 @@
                                 <div class="thumbnail-container relative h-[200px] rounded-xl bg-[#D9D9D9] overflow-hidden">
                                     <img src="{{ Storage::url($itemNewWorkshop->thumbnail) }}"
                                         class="w-full h-full object-cover" alt="thumbnail">
+
                                     @if ($itemNewWorkshop->is_open)
                                         @if ($itemNewWorkshop->has_started)
                                             <div
@@ -51,8 +49,8 @@
                                         @else
                                             <div
                                                 class="absolute top-3 left-3 flex items-center rounded-full py-3 px-5 gap-1 bg-aktiv-green text-white z-10">
-                                                <img src="{{ asset('assets/images/icons/medal-star.svg') }}"
-                                                    class="w-6 h-6" alt="icon">
+                                                <img src="{{ asset('assets/images/icons/medal-star.svg') }}" class="w-6 h-6"
+                                                    alt="icon">
                                                 <span class="font-semibold">OPEN</span>
                                             </div>
                                         @endif
@@ -68,7 +66,7 @@
                                 <div class="card-detail flex flex-col gap-2">
                                     <div class="flex items-center gap-3">
                                         <div class="flex items-center gap-1">
-                                            <img src="{{ asset('assets/images/icons/calendar-2.svg') }}"
+                                            <img src="{{ asset('assets/images/icons/calendar.svg') }}"
                                                 class="w-6 h-6 flex shrink-0" alt="icon">
                                             <span
                                                 class="font-medium text-aktiv-grey">{{ $itemNewWorkshop->started_at->format('d M, Y') }}</span>
@@ -100,5 +98,6 @@
             </div>
         </div>
     </section>
+
     <x-footer />
 @endsection

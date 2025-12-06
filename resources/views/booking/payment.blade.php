@@ -1,20 +1,17 @@
 @extends('layouts.app')
 
-@section('title')
-    Confirmation Payment
-@endsection
+@section('title', 'Payment Confirmation')
 
 @section('content')
-    <div class="h-[112px]">
-        <x-nav />
-    </div>
+    <x-nav />
+
     <div id="background" class="relative w-full">
         <div class="absolute w-full h-[300px] bg-[linear-gradient(0deg,#4EB6F5_0%,#5B8CE9_100%)] -z-10"></div>
     </div>
     <section id="Content" class="w-full max-w-[1280px] mx-auto px-[52px] mt-16 mb-[100px]">
         <div class="flex flex-col gap-16">
             <div class="flex flex-col items-center gap-1">
-                <p class="font-bold text-[32px] leading-[48px] capitalize text-white">Confirmation Payment</p>
+                <p class="font-bold text-[32px] leading-[48px] capitalize text-white">Payment Confirmation</p>
                 <div class="flex items-center gap-2 text-white">
                     <a class="last:font-semibold">Homepage</a>
                     <span>></span>
@@ -22,7 +19,7 @@
                     <span>></span>
                     <a class="last:font-semibold">Booking {{ $workshop->name }}</a>
                     <span>></span>
-                    <a class="last:font-semibold">Confirmation Payment</a>
+                    <a class="last:font-semibold">Payment Confirmation</a>
                 </div>
             </div>
             <main class="flex gap-8">
@@ -36,16 +33,16 @@
                         <div class="card-detail flex flex-col gap-2">
                             <div class="flex items-center gap-3">
                                 <div class="flex items-center gap-1">
-                                    <img src="{{ asset('assets/images/icons/calendar-2.svg') }}"
-                                        class="w-6 h-6 flex shrink-0" alt="icon">
+                                    <img src="{{ asset('assets/images/icons/calendar.svg') }}" class="w-6 h-6 flex shrink-0"
+                                        alt="icon">
                                     <span
                                         class="font-medium text-aktiv-grey">{{ $workshop->started_at->format('d M, Y') }}</span>
                                 </div>
                                 <div class="flex items-center gap-1">
                                     <img src="{{ asset('assets/images/icons/timer.svg') }}" class="w-6 h-6 flex shrink-0"
                                         alt="icon">
-                                    <span class="font-medium text-aktiv-grey">{{ $workshop->time_at->format('h:i A') }} -
-                                        Finish</span>
+                                    <span class="font-medium text-aktiv-grey">{{ $workshop->time_at->format('h:i A') }}
+                                        Onwards</span>
                                 </div>
                             </div>
                             <h3 class="font-Neue-Plak-bold text-xl">{{ $workshop->name }}</h3>
@@ -69,7 +66,8 @@
                             </div>
                         </div>
                         <div class="flex flex-col gap-4">
-                            <h2 class="font-Neue-Plak-bold text-xl leading-[27.5px]">This workshop will teach</h2>
+                            <h2 class="font-Neue-Plak-bold text-xl leading-[27.5px]">What This Workshop Covers</h2>
+
                             @foreach ($workshop->benefits as $itemBenefit)
                                 <div class="flex flex-col gap-6">
                                     <div class="flex items-center gap-2">
@@ -90,13 +88,13 @@
                                 <div class="flex flex-col gap-3">
                                     <p class="font-medium leading-[25.6px] text-aktiv-grey">{{ $workshop->address }}</p>
                                     <a href="https://www.google.com/maps/place/{{ $workshop->address }}"
-                                        class="font-semibold text-aktiv-orange">View in Google Maps</a>
+                                        class="font-semibold text-aktiv-orange" target="_blank">View in Google Maps</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <label class="group mt-8">
-                        <input type="checkbox" class="hidden">
+                        <input type="checkbox" name="hidden" class="hidden">
                         <p
                             class="before:content-['Show_Less'] group-has-[:checked]:before:content-['Show_More'] before:font-semibold before:text-lg before:leading-[27px] flex items-center justify-center gap-[6px]">
                             <img src="{{ asset('assets/images/icons/arrow-up.svg') }}"
@@ -139,7 +137,7 @@
                             <h2 class="font-Neue-Plak-bold text-xl leading-[27.5px]">Your Bank Account</h2>
                             <div class="flex flex-col gap-6">
                                 <label class="flex flex-col gap-4">
-                                    <p class="font-medium text-aktiv-grey">Select Bank Type</p>
+                                    <p class="font-medium text-aktiv-grey">Bank Name</p>
                                     <div
                                         class="group input-wrapper flex items-center rounded-xl p-4 gap-2 bg-[#FBFBFB] overflow-hidden">
                                         <img src="{{ asset('assets/images/icons/bank.svg') }}"
@@ -150,7 +148,7 @@
                                             alt="icon">
                                         <input type="text" name="customer_bank_name" id="bankname"
                                             class="appearance-none bg-transparent w-full outline-none text-lg leading-[27px] font-semibold placeholder:font-medium placeholder:text-aktiv-grey"
-                                            placeholder="What is the name of the bank you use?" required>
+                                            placeholder="Type your bank name" required>
                                     </div>
                                 </label>
                                 <label class="flex flex-col gap-4">
@@ -165,11 +163,11 @@
                                             alt="icon">
                                         <input type="text" name="customer_bank_account" id="fullname"
                                             class="appearance-none bg-transparent w-full outline-none text-lg leading-[27px] font-semibold placeholder:font-medium placeholder:text-aktiv-grey"
-                                            placeholder="Under whose name is this bank account?" required>
+                                            placeholder="Type the full name on the bank account" required>
                                     </div>
                                 </label>
                                 <label class="flex flex-col gap-4">
-                                    <p class="font-medium text-aktiv-grey">Bank account number</p>
+                                    <p class="font-medium text-aktiv-grey">Bank Account Number</p>
                                     <div
                                         class="group input-wrapper flex items-center rounded-xl p-4 gap-2 bg-[#FBFBFB] overflow-hidden">
                                         <img src="{{ asset('assets/images/icons/card-edit.svg') }}"
@@ -180,7 +178,7 @@
                                             alt="icon">
                                         <input type="text" name="customer_bank_number" id="banknumber"
                                             class="appearance-none bg-transparent w-full outline-none text-lg leading-[27px] font-semibold placeholder:font-medium placeholder:text-aktiv-grey"
-                                            placeholder="What is the bank account number?" required>
+                                            placeholder="Type your bank account number" required>
                                     </div>
                                 </label>
                             </div>
@@ -232,7 +230,7 @@
                             </div>
                         </div>
                         <div class="flex flex-col gap-4">
-                            <h2 class="font-Neue-Plak-bold text-xl leading-[27.5px]">Upload Proof of payment</h2>
+                            <h2 class="font-Neue-Plak-bold text-xl leading-[27.5px]">Upload Receipt</h2>
                             <label class="flex flex-col gap-4">
                                 <div class="group flex items-center rounded-xl p-4 gap-2 bg-[#FBFBFB] overflow-hidden">
                                     <div
@@ -264,7 +262,7 @@
     </section>
 @endsection
 
-@section('after-scripts')
+@section('scripts')
     <script src="{{ asset('assets/js/accodion.js') }}"></script>
     <script src="{{ asset('assets/js/upload-file.js') }}"></script>
 @endsection

@@ -1,13 +1,10 @@
 @extends('layouts.app')
 
-@section('title')
-    {{ $workshop->name }} Details
-@endsection
+@section('title', $workshop->name . ' Details')
 
 @section('content')
-    <div class="h-[112px]">
-        <x-nav />
-    </div>
+    <x-nav />
+
     <div id="background" class="relative w-full">
         <div class="absolute w-full h-[300px] bg-[linear-gradient(0deg,#4EB6F5_0%,#5B8CE9_100%)] -z-10"></div>
     </div>
@@ -16,7 +13,7 @@
             <div class="flex flex-col items-center gap-1">
                 <p class="font-bold text-[32px] leading-[48px] capitalize text-white">{{ $workshop->name }} Details</p>
                 <div class="flex items-center gap-2 text-white">
-                    <a class="last:font-semibold">Homepage</a>
+                    <a class="last:font-semibold">Home</a>
                     <span>></span>
                     <a class="last:font-semibold">{{ $workshop->name }} Details</a>
                 </div>
@@ -26,6 +23,7 @@
                     <div id="Thumbnail" class="relative flex w-full h-[369px] rounded-2xl overflow-hidden bg-[#D9D9D9]">
                         <img src="{{ Storage::url($workshop->thumbnail) }}" class="w-full h-full object-cover"
                             alt="thumbnail">
+
                         @if ($workshop->is_open)
                             @if ($workshop->has_started)
                                 <div
@@ -70,16 +68,10 @@
                             </div>
                             <div class="flex items-center gap-1">
                                 <div class="flex items-center">
-                                    <img src="{{ asset('assets/images/icons/Star 1.svg') }}" class="p-[4px] w-6 h-6"
-                                        alt="star">
-                                    <img src="{{ asset('assets/images/icons/Star 1.svg') }}" class="p-[4px] w-6 h-6"
-                                        alt="star">
-                                    <img src="{{ asset('assets/images/icons/Star 1.svg') }}" class="p-[4px] w-6 h-6"
-                                        alt="star">
-                                    <img src="{{ asset('assets/images/icons/Star 1.svg') }}" class="p-[4px] w-6 h-6"
-                                        alt="star">
-                                    <img src="{{ asset('assets/images/icons/Star 1.svg') }}" class="p-[4px] w-6 h-6"
-                                        alt="star">
+                                    @foreach (range(1, 5) as $i)
+                                        <img src="{{ asset('assets/images/icons/star.svg') }}" class="p-[4px] w-6 h-6"
+                                            alt="star">
+                                    @endforeach
                                 </div>
                                 <p class="font-semibold text-lg leading-[27px]">5.0 <span
                                         class="font-medium text-aktiv-grey"></span></p>
@@ -91,22 +83,22 @@
                                 <div
                                     class="flex items-center justify-between rounded-2xl border border-[#E6E7EB] p-5 gap-4 bg-white">
                                     <div class="flex flex-col gap-2">
-                                        <p class="font-medium text-aktiv-grey">Start from</p>
+                                        <p class="font-medium text-aktiv-grey">Time</p>
                                         <p class="font-semibold text-lg leading-[27px]">
-                                            {{ $workshop->time_at->format('h:i A') }} - Finish</p>
+                                            {{ $workshop->time_at->format('h:i A') }} Onwards</p>
                                     </div>
-                                    <img src="{{ asset('assets/images/icons/Duration.png') }}"
+                                    <img src="{{ asset('assets/images/icons/duration.png') }}"
                                         class="w-16 h-16 flex shrink-0" alt="icon">
                                 </div>
                                 <div
                                     class="flex items-center justify-between rounded-2xl border border-[#E6E7EB] p-5 gap-4 bg-white">
                                     <div class="flex flex-col gap-2">
-                                        <p class="font-medium text-aktiv-grey">Kick off date</p>
+                                        <p class="font-medium text-aktiv-grey">Kick-off</p>
                                         <p class="font-semibold text-lg leading-[27px]">
                                             {{ $workshop->started_at->format('d M, Y') }}</p>
                                     </div>
-                                    <img src="{{ asset('assets/images/icons/Kick off date.png') }}"
-                                        class="w-16 h-16 flex shrink-0" alt="icon">
+                                    <img src="{{ asset('assets/images/icons/date.png') }}" class="w-16 h-16 flex shrink-0"
+                                        alt="icon">
                                 </div>
                             </div>
                         </div>
@@ -114,12 +106,7 @@
                     <div id="Descriptions" class="flex flex-col gap-4">
                         <h2 class="font-Neue-Plak-bold text-xl leading-[27.5px]">Descriptions</h2>
                         <p class="group relative font-medium leading-[28.8px] text-aktiv-grey">
-                            <span class="line-clamp-4 group-has-[:checked]:line-clamp-none">{{ $workshop->about }}</span>
-                            <label class="group absolute bottom-0 right-0 z-10 bg-white has-[:checked]:relative">
-                                <input type="checkbox" class="peer hidden">
-                                <span
-                                    class="pr-52 before:content-['..._'] after:font-semibold after:text-aktiv-blue after:content-['Read_More...'] group-has-[:checked]:pr-0 group-has-[:checked]:after:content-['See_Less'] group-has-[:checked]:before:content-['']"></span>
-                            </label>
+                            <span>{{ $workshop->about }}</span>
                         </p>
                     </div>
                     <div id="Location" class="flex flex-col gap-4">
@@ -135,7 +122,7 @@
                                     <p class="font-medium leading-[25.6px] text-aktiv-grey line-clamp-4">
                                         {{ $workshop->address }}</p>
                                     <a href="https://www.google.com/maps/place/{{ $workshop->address }}"
-                                        class="font-semibold text-aktiv-orange">View in Google Maps</a>
+                                        class="font-semibold text-aktiv-orange" target="_blank">View In Google Maps</a>
                                 </div>
                             </div>
                             <img src="{{ Storage::url($workshop->bg_map) }}" class="w-full h-full object-cover"
@@ -175,11 +162,11 @@
                                 <p class="font-semibold text-lg leading-[27px]">{{ $workshop->participants->count() }}
                                     People Has Joined</p>
                             </div>
-                            <img src="{{ asset('assets/images/icons/user-2.svg') }}" class="w-[56px] h-[56px]"
+                            <img src="{{ asset('assets/images/icons/user.svg') }}" class="w-[56px] h-[56px]"
                                 alt="icon">
                         </div>
                         <div class="flex flex-col mx-8 gap-4">
-                            <h2 class="font-Neue-Plak-bold text-xl leading-[27.5px]">This workshop will teach</h2>
+                            <h2 class="font-Neue-Plak-bold text-xl leading-[27.5px]">What This Workshop Covers</h2>
                             <div class="flex flex-col gap-6">
                                 @foreach ($workshop->benefits as $itemBenefit)
                                     <div class="flex items-center gap-2">
@@ -200,8 +187,8 @@
                                     class="flex items-center justify-center mx-8 h-16 rounded-xl px-6 gap-[10px] bg-[#E6E7EB] font-semibold text-lg leading-[27px] text-white mb-8">Join
                                     Workshop</a>
                                 <div class="p-4 bg-aktiv-red">
-                                    <p class="font-semibold text-lg leading-[27px] text-center text-white">Oops! Sorry, it
-                                        seems that registration for this workshop is now closed 🙌🏻</p>
+                                    <p class="font-semibold text-lg leading-[27px] text-center text-white">Oops!
+                                        Registration for this workshop is now closed 🙌🏻</p>
                                 </div>
                             @endif
                         </div>

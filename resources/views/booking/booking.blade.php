@@ -1,13 +1,10 @@
 @extends('layouts.app')
 
-@section('title')
-    Booking {{ $workshop->name }}
-@endsection
+@section('title', 'Booking ' . $workshop->name)
 
 @section('content')
-    <div class="h-[112px]">
-        <x-nav />
-    </div>
+    <x-nav />
+
     <div id="background" class="relative w-full">
         <div class="absolute w-full h-[300px] bg-[linear-gradient(0deg,#4EB6F5_0%,#5B8CE9_100%)] -z-10"></div>
     </div>
@@ -34,16 +31,16 @@
                         <div class="card-detail flex flex-col gap-2">
                             <div class="flex items-center gap-3">
                                 <div class="flex items-center gap-1">
-                                    <img src="{{ asset('assets/images/icons/calendar-2.svg') }}"
-                                        class="w-6 h-6 flex shrink-0" alt="icon">
+                                    <img src="{{ asset('assets/images/icons/calendar.svg') }}" class="w-6 h-6 flex shrink-0"
+                                        alt="icon">
                                     <span
                                         class="font-medium text-aktiv-grey">{{ $workshop->started_at->format('d M, Y') }}</span>
                                 </div>
                                 <div class="flex items-center gap-1">
                                     <img src="{{ asset('assets/images/icons/timer.svg') }}" class="w-6 h-6 flex shrink-0"
                                         alt="icon">
-                                    <span class="font-medium text-aktiv-grey">{{ $workshop->time_at->format('h:i A') }} -
-                                        Finish</span>
+                                    <span class="font-medium text-aktiv-grey">{{ $workshop->time_at->format('h:i A') }}
+                                        Onwards</span>
                                 </div>
                             </div>
                             <h3 class="font-Neue-Plak-bold text-xl">{{ $workshop->name }}</h3>
@@ -67,7 +64,8 @@
                             </div>
                         </div>
                         <div class="flex flex-col gap-4">
-                            <h2 class="font-Neue-Plak-bold text-xl leading-[27.5px]">This workshop will teach</h2>
+                            <h2 class="font-Neue-Plak-bold text-xl leading-[27.5px]">What This Workshop Covers</h2>
+
                             @foreach ($workshop->benefits as $itemBenefit)
                                 <div class="flex flex-col gap-6">
                                     <div class="flex items-center gap-2">
@@ -88,13 +86,13 @@
                                 <div class="flex flex-col gap-3">
                                     <p class="font-medium leading-[25.6px] text-aktiv-grey">{{ $workshop->address }}</p>
                                     <a href="https://www.google.com/maps/place/{{ $workshop->address }}"
-                                        class="font-semibold text-aktiv-orange">View in Google Maps</a>
+                                        class="font-semibold text-aktiv-orange" target="_blank">View in Google Maps</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <label class="group mt-8">
-                        <input type="checkbox" class="hidden">
+                        <input type="checkbox" name="hidden" class="hidden">
                         <p
                             class="before:content-['Show_Less'] group-has-[:checked]:before:content-['Show_More'] before:font-semibold before:text-lg before:leading-[27px] flex items-center justify-center gap-[6px]">
                             <img src="{{ asset('assets/images/icons/arrow-up.svg') }}"
@@ -109,8 +107,8 @@
                         <img src="{{ asset('assets/images/icons/shield-tick.svg') }}"
                             class="w-[62px] h-[62px] flex shrink-0" alt="icon">
                         <div class="flex flex-col gap-[2px]">
-                            <p class="font-semibold text-lg leading-[27px]">Safe Security Pro Max+</p>
-                            <p class="font-medium text-aktiv-grey">Don’t worry, Your data will be kept private and
+                            <p class="font-semibold text-lg leading-[27px]">Ultimate Data Security</p>
+                            <p class="font-medium text-aktiv-grey">Rest assured, your data is kept private and fully
                                 protected.</p>
                         </div>
                     </div>
@@ -119,7 +117,7 @@
                         <div class="flex flex-col gap-6">
                             <p
                                 class="w-full border-l-[5px] border-aktiv-red py-4 px-3 bg-[linear-gradient(270deg,rgba(235,87,87,0)_0%,rgba(235,87,87,0.09)_100%)] font-semibold text-aktiv-red">
-                                Please enter data correctly. We will send the order receipt to your email.</p>
+                                Please ensure all information is correct. The order receipt will be sent to your email.</p>
                             <label class="flex flex-col gap-4">
                                 <p class="font-medium text-aktiv-grey">Full Name</p>
                                 <div
@@ -132,11 +130,11 @@
                                         alt="icon">
                                     <input type="text" name="name" id="name"
                                         class="appearance-none bg-transparent w-full outline-none text-lg leading-[27px] font-semibold placeholder:font-medium placeholder:text-aktiv-grey"
-                                        placeholder="Write your complete name" required>
+                                        placeholder="Type your full name" autocomplete="name" required>
                                 </div>
                             </label>
                             <label class="flex flex-col gap-4">
-                                <p class="font-medium text-aktiv-grey">Phone No</p>
+                                <p class="font-medium text-aktiv-grey">Phone Number</p>
                                 <div
                                     class="group input-wrapper flex items-center rounded-xl p-4 gap-2 bg-[#FBFBFB] overflow-hidden">
                                     <img src="{{ asset('assets/images/icons/call.svg') }}"
@@ -147,11 +145,11 @@
                                         alt="icon">
                                     <input type="tel" name="phone" id="phone"
                                         class="appearance-none bg-transparent w-full outline-none text-lg leading-[27px] font-semibold placeholder:font-medium placeholder:text-aktiv-grey"
-                                        placeholder="Give us your phone number" required>
+                                        placeholder="Type your phone number" autocomplete="phone" required>
                                 </div>
                             </label>
                             <label class="flex flex-col gap-4">
-                                <p class="font-medium text-aktiv-grey">Email Address</p>
+                                <p class="font-medium text-aktiv-grey">Email</p>
                                 <div
                                     class="group input-wrapper flex items-center rounded-xl p-4 gap-2 bg-[#FBFBFB] overflow-hidden">
                                     <img src="{{ asset('assets/images/icons/sms.svg') }}"
@@ -162,7 +160,7 @@
                                         alt="icon">
                                     <input type="email" name="email" id="email"
                                         class="appearance-none bg-transparent w-full outline-none text-lg leading-[27px] font-semibold placeholder:font-medium placeholder:text-aktiv-grey"
-                                        placeholder="Write your email address" required>
+                                        placeholder="Type your email" autocomplete="email" required>
                                 </div>
                             </label>
                         </div>
@@ -221,7 +219,7 @@
                                                         alt="icon">
                                                     <input type="text" name="participants[0][name]"
                                                         class="appearance-none bg-transparent w-full outline-none text-lg leading-[27px] font-semibold placeholder:font-medium placeholder:text-aktiv-grey"
-                                                        placeholder="Write your complete name" required>
+                                                        placeholder="Type your full name" required>
                                                 </div>
                                             </label>
                                             <label class="flex flex-col gap-4">
@@ -236,11 +234,11 @@
                                                         alt="icon">
                                                     <input type="text" name="participants[0][occupation]"
                                                         class="appearance-none bg-transparent w-full outline-none text-lg leading-[27px] font-semibold placeholder:font-medium placeholder:text-aktiv-grey"
-                                                        placeholder="Attendant Status" required>
+                                                        placeholder="Type your occupation" required>
                                                 </div>
                                             </label>
                                             <label class="flex flex-col gap-4">
-                                                <p class="font-medium text-aktiv-grey">Email Address</p>
+                                                <p class="font-medium text-aktiv-grey">Email</p>
                                                 <div
                                                     class="group input-wrapper flex items-center rounded-xl p-4 gap-2 bg-[#FBFBFB] overflow-hidden">
                                                     <img src="{{ asset('assets/images/icons/sms.svg') }}"
@@ -251,13 +249,13 @@
                                                         alt="icon">
                                                     <input type="email" name="participants[0][email]"
                                                         class="appearance-none bg-transparent w-full outline-none text-lg leading-[27px] font-semibold placeholder:font-medium placeholder:text-aktiv-grey"
-                                                        placeholder="Attendant Email Address" required>
+                                                        placeholder="Type your email" required>
                                                 </div>
                                             </label>
                                         </div>
                                     </div>
-                                    <span class="hidden font-medium text-aktiv-red peer-has-[.invalid]:block">Please fill
-                                        in the attendant’s data before proceeding.</span>
+                                    <span class="hidden font-medium text-aktiv-red peer-has-[.invalid]:block">Please
+                                        complete the attendee's information to proceed.</span>
                                 </div>
                             </div>
                         </div>
@@ -297,7 +295,7 @@
     </section>
 @endsection
 
-@section('after-scripts')
+@section('scripts')
     <script src="{{ asset('assets/js/accodion.js') }}"></script>
     <script src="{{ asset('assets/js/booking.js') }}"></script>
 @endsection

@@ -1,21 +1,18 @@
 @extends('layouts.app')
 
-@section('title')
-    My Booking Details
-@endsection
+@section('title', 'My Booking Details')
 
 @section('content')
-    <div class="h-[112px]">
-        <x-nav />
-    </div>
+    <x-nav />
+
     <div id="background" class="relative w-full">
         <div class="absolute w-full h-[300px] bg-[linear-gradient(0deg,#4EB6F5_0%,#5B8CE9_100%)] -z-10"></div>
     </div>
     <section id="Content" class="w-full max-w-[1280px] mx-auto px-[52px] mt-16 mb-[100px]">
         <div class="flex flex-col gap-16">
             <div class="flex flex-col items-center gap-1">
-                <p class="font-bold text-[32px] leading-[48px] capitalize text-white">Your workshop booking</p>
-                <p class="font-semibold text-white">happy Learning~</p>
+                <p class="font-bold text-[32px] leading-[48px] capitalize text-white">Your Booking Details</p>
+                <p class="font-semibold text-white">Happy learning!</p>
             </div>
             <main class="flex gap-8">
                 <section id="Sidebar" class="group flex flex-col w-[420px] h-fit rounded-3xl p-8 bg-white">
@@ -28,8 +25,8 @@
                         <div class="card-detail flex flex-col gap-2">
                             <div class="flex items-center gap-3">
                                 <div class="flex items-center gap-1">
-                                    <img src="{{ asset('assets/images/icons/calendar-2.svg') }}"
-                                        class="w-6 h-6 flex shrink-0" alt="icon">
+                                    <img src="{{ asset('assets/images/icons/calendar.svg') }}" class="w-6 h-6 flex shrink-0"
+                                        alt="icon">
                                     <span
                                         class="font-medium text-aktiv-grey">{{ $myBookingDetails->workshop->started_at->format('d M, Y') }}</span>
                                 </div>
@@ -38,8 +35,7 @@
                                         alt="icon">
                                     <span
                                         class="font-medium text-aktiv-grey">{{ $myBookingDetails->workshop->time_at->format('h:i A') }}
-                                        -
-                                        Finish</span>
+                                        Onwards</span>
                                 </div>
                             </div>
                             <h3 class="font-Neue-Plak-bold text-xl">{{ $myBookingDetails->workshop->name }}</h3>
@@ -65,7 +61,8 @@
                             </div>
                         </div>
                         <div class="flex flex-col gap-4">
-                            <h2 class="font-Neue-Plak-bold text-xl leading-[27.5px]">This workshop will teach</h2>
+                            <h2 class="font-Neue-Plak-bold text-xl leading-[27.5px]">What This Workshop Covers</h2>
+
                             @foreach ($myBookingDetails->workshop->benefits as $itemBenefit)
                                 <div class="flex flex-col gap-6">
                                     <div class="flex items-center gap-2">
@@ -87,13 +84,13 @@
                                     <p class="font-medium leading-[25.6px] text-aktiv-grey">
                                         {{ $myBookingDetails->workshop->address }}</p>
                                     <a href="https://www.google.com/maps/place/{{ $myBookingDetails->workshop->address }}"
-                                        class="font-semibold text-aktiv-orange">View in Google Maps</a>
+                                        class="font-semibold text-aktiv-orange" target="_blank">View in Google Maps</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <label class="group mt-8">
-                        <input type="checkbox" class="hidden">
+                        <input type="checkbox" name="hidden" class="hidden">
                         <p
                             class="before:content-['Show_Less'] group-has-[:checked]:before:content-['Show_More'] before:font-semibold before:text-lg before:leading-[27px] flex items-center justify-center gap-[6px]">
                             <img src="{{ asset('assets/images/icons/arrow-up.svg') }}"
@@ -108,9 +105,9 @@
                                 <img src="{{ asset('assets/images/icons/wallet-check.svg') }}"
                                     class="w-[74px] h-[74px] flex shrink-0" alt="icon">
                                 <div class="flex flex-col gap-1">
-                                    <p class="font-semibold text-lg leading-[27px]">Status Payment Success!</p>
-                                    <p class="font-medium text-lg leading-[27px] text-[#58938E]">Your order is confirmed. We
-                                        appreciate your patience.</p>
+                                    <p class="font-semibold text-lg leading-[27px]">Payment Successful!</p>
+                                    <p class="font-medium text-lg leading-[27px] text-[#58938E]">Your order is confirmed.
+                                        Thank you for joining us!</p>
                                 </div>
                             </div>
                         @else
@@ -118,13 +115,13 @@
                                 <img src="{{ asset('assets/images/icons/wallet-time.svg') }}"
                                     class="w-[74px] h-[74px] flex shrink-0" alt="icon">
                                 <div class="flex flex-col gap-1">
-                                    <p class="font-semibold text-lg leading-[27px]">Status Payment Pending!</p>
-                                    <p class="font-medium text-lg leading-[27px] text-[#B4A476]">Your order is pending.
-                                        Please
-                                        wait a few minutes for review.</p>
+                                    <p class="font-semibold text-lg leading-[27px]">Payment Processing</p>
+                                    <p class="font-medium text-lg leading-[27px] text-[#B4A476]">Your order is pending
+                                        verification. Please wait a few minutes.</p>
                                 </div>
                             </div>
                         @endif
+
                         <div class="flex flex-col gap-4 p-8">
                             <h2 class="font-Neue-Plak-bold text-xl leading-[27.5px]">Booking Details</h2>
                             <div class="flex flex-col rounded-xl border border-[#E6E7EB] p-6 gap-4">
@@ -182,7 +179,7 @@
                                 </div>
                             </div>
                             <div class="flex flex-col gap-4">
-                                <p class="font-medium text-aktiv-grey">Bank account number</p>
+                                <p class="font-medium text-aktiv-grey">Bank Account Number</p>
                                 <div
                                     class="input-wrapper flex items-center rounded-xl p-4 gap-2 bg-[#FBFBFB] overflow-hidden">
                                     <img src="{{ asset('assets/images/icons/card-edit-black.svg') }}"
@@ -233,7 +230,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="flex flex-col gap-4">
-                                                    <p class="font-medium text-aktiv-grey">Email Address</p>
+                                                    <p class="font-medium text-aktiv-grey">Email</p>
                                                     <div
                                                         class="input-wrapper flex items-center rounded-xl p-4 gap-2 bg-[#FBFBFB] overflow-hidden">
                                                         <img src="{{ asset('assets/images/icons/sms-black.svg') }}"
@@ -255,6 +252,6 @@
     </section>
 @endsection
 
-@section('after-scripts')
+@section('scripts')
     <script src="{{ asset('assets/js/accodion.js') }}"></script>
 @endsection
