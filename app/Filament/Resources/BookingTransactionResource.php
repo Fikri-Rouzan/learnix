@@ -203,6 +203,7 @@ class BookingTransactionResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('booking_trx_id')
+                    ->label('Transaction ID')
                     ->searchable(),
                 Tables\Columns\IconColumn::make('is_paid')
                     ->boolean()

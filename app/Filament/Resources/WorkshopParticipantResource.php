@@ -70,6 +70,7 @@ class WorkshopParticipantResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('workshop.thumbnail'),
                 Tables\Columns\TextColumn::make('bookingTransaction.booking_trx_id')
+                    ->label('Transaction ID')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
